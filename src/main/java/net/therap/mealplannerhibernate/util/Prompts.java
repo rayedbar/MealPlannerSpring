@@ -31,7 +31,8 @@ public class Prompts {
         System.out.println("[2]View meal");
         System.out.println("[3]Update meal");
         System.out.println("[4]View meal by type");
-        System.out.println("[5]Go back");
+        System.out.println("[5]View meal by day");
+        System.out.println("[6]Go back");
     }
 
     public static void invalidOption(){

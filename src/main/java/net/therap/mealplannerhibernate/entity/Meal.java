@@ -12,7 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "meal")
-public class    Meal {
+public class Meal {
+
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")

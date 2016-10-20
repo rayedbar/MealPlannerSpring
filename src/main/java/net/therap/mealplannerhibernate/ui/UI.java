@@ -50,11 +50,9 @@ public class UI {
             int input = Input.getNumericInput();
             switch (input) {
                 case 1:
-                    //meaPlanner.addMeal();
                     mealPlanner.addMeal();
                     break;
                 case 2:
-                    //meaPlanner.viewMeal(false);
                     mealPlanner.viewMeal();
                     break;
                 case 3:
@@ -64,6 +62,9 @@ public class UI {
                     mealPlanner.viewMealByType();
                     break;
                 case 5:
+                    mealPlanner.viewMealByDay();
+                    break;
+                case 6:
                     Main.mainMenu();
                     break;
                 default:

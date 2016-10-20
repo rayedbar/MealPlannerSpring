@@ -20,7 +20,6 @@ public class Main {
                     UI.dishUI();
                     break;
                 case 2:
-                    //UI.mealUI();
                     UI.mealUI();
                     break;
                 case 3:

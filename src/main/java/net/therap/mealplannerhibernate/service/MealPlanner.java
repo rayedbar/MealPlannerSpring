@@ -67,7 +67,6 @@ public class MealPlanner {
             Meal meal = new Meal(day, type, dishList);
 
             session.save(meal);
-
             session.getTransaction().commit();
             session.close();
         } else {
@@ -167,17 +166,20 @@ public class MealPlanner {
 
         List<Meal> mealList = query.list();
 
-        System.out.println(mealList.get(0).getDay().toUpperCase());
-        for (Meal meal : mealList) {
-            System.out.print(meal.getType() + ": ");
-            List<Dish> dishList = meal.getDishList();
-            Iterator<Dish> iterator = dishList.iterator();
-            for (Dish dish : dishList) {
-                System.out.print(dish.getName() + ", ");
+        try {
+            System.out.println(mealList.get(0).getDay().toUpperCase() + ":");
+            for (Meal meal : mealList) {
+                System.out.print(meal.getType() + ": ");
+                List<Dish> dishList = meal.getDishList();
+                Iterator<Dish> iterator = dishList.iterator();
+                for (Dish dish : dishList) {
+                    System.out.print(dish.getName() + ", ");
+                }
+                System.out.println();
             }
-            System.out.println();
+        } catch (Exception e){
+            System.err.println(dayName + " Invalid or doesn't exist yet");
         }
-
     }
 
     public void viewMealByType() {
@@ -197,6 +199,4 @@ public class MealPlanner {
 
         Display.diplayMealByType(list);
     }
-
-
 }
