@@ -2,6 +2,14 @@ apply plugin: 'java'
 
 apply plugin: 'application'
 
+apply plugin: 'war'
+
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+sourceCompatibility = 1.7
+
+version = 1.0
+
 mainClassName = "net.therap.mealplannerhibernate.app.Main"
 
 repositories {
@@ -11,6 +19,7 @@ repositories {
 dependencies {
     runtime group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
     compile 'org.hibernate:hibernate-core:5.1.2.Final'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
 }
 
 run{
