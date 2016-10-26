@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: rayed
-  Date: 10/25/16
-  Time: 2:42 PM
+  Date: 10/26/16
+  Time: 12:16 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-    <% response.sendRedirect("signup.jsp");%>
+    <h1>Success. You have arrived at home page</h1>
 </body>
 </html>

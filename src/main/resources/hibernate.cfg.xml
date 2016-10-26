@@ -19,5 +19,6 @@
         <!-- List of XML mapping files -->
         <mapping class="net.therap.mealplannerhibernate.entity.Dish"/>
         <mapping class="net.therap.mealplannerhibernate.entity.Meal"/>
+        <mapping class="net.therap.mealplannerhibernate.entity.User"/>
     </session-factory>
 </hibernate-configuration>

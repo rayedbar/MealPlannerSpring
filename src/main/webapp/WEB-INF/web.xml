@@ -5,4 +5,8 @@
          version="3.1">
 
 
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.SignupServlet</servlet-class>
+    </servlet>
 </web-app>

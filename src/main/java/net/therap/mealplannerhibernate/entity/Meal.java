@@ -3,6 +3,7 @@ package net.therap.mealplannerhibernate.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "meal")
-public class Meal {
+public class Meal implements Serializable{
 
     @Id
     @GeneratedValue(generator="increment")

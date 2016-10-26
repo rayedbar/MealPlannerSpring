@@ -1,6 +1,9 @@
 package net.therap.mealplannerhibernate.entity;
 
-import javax.persistence.Entity;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author rayed
@@ -8,21 +11,38 @@ import javax.persistence.Entity;
  */
 
 @Entity
+@Table(name = "user")
+public class User implements Serializable{
 
-public class User {
-
-
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "user_id")
     private int id;
-    private String name;
+
+    @Column(name = "user_email", nullable = false)
+    private String email;
+
+    @Column(name = "user_password", nullable = false)
+    private String password;
 
     public User(){
 
     }
 
-    public User(String name){
-        this.name = name;
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
     }
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -32,11 +52,11 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
