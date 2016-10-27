@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -27,10 +28,17 @@ public class SignupServlet extends HttpServlet {
         boolean userAdded = userManager.addUser(inputEmail, inputPassword);
 
         if (userAdded){
-            response.sendRedirect("homapage.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("inputEmail", inputEmail);
+            session.setAttribute("inputPassword", inputPassword);
+            response.sendRedirect("homepage.jsp");
         } else {
-            response.sendRedirect("signup.jsp");
+            //request.getSession().setAttribute("error", "failed");
+            request.setAttribute("message", "sign up failed");
+            request.getRequestDispatcher("/signup.jsp").include(request, response);
+            //response.sendRedirect("signup.jsp");
         }
+
 
     }
 }

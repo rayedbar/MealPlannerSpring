@@ -32,6 +32,9 @@
 </head>
 <body>
     <div class="container">
+        <div class="page-header">
+            <h1>Welcome to Meal Planner</h1>
+        </div>
         <form class="form-signin" action="Login.do" method="POST">
             <h2 class="form-signin-heading">Please log in</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
@@ -44,6 +47,10 @@
                 </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            <br>
+            <div class="center-block">
+                <a href="signup.jsp">Sign up?</a>
+            </div>
         </form>
     </div> <!-- /container -->
 

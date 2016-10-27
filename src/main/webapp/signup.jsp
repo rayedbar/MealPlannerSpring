@@ -1,3 +1,4 @@
+<%@ page import="java.io.PrintWriter" %>
 <%--
   Created by IntelliJ IDEA.
   User: rayed
@@ -16,7 +17,7 @@
     <meta email="author" content="Md. Rayed Bin Wahed">
     <link rel="icon" href="assets/favicon.ico">
 
-    <title>Log In</title>
+    <title>Sign Up</title>
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
@@ -32,19 +33,16 @@
 </head>
 <body>
 <div class="container">
+    <div class="page-header">
+        <h1></h1>
+    </div>
     <form class="form-signin" action="Signup.do" method="POST">
         <h2 class="form-signin-heading">Please sign up</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-        <a href="login.jsp"><label>Already signed up?</label></a>
     </form>
 
 </div> <!-- /container -->

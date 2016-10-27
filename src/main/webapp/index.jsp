@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-    <% response.sendRedirect("signup.jsp");%>
+    <% response.sendRedirect("login.jsp");%>
 </body>
 </html>

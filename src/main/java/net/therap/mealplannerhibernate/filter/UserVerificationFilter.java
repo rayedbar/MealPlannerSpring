@@ -3,7 +3,6 @@ package net.therap.mealplannerhibernate.filter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -27,7 +26,7 @@ public class UserVerificationFilter implements Filter {
         System.out.println("Servlet Filter arrived");
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        //HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         HttpSession session = httpServletRequest.getSession();
         String inputEmail = (String) session.getAttribute("inputEmail");
