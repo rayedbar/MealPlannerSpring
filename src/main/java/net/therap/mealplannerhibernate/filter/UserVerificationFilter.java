@@ -11,7 +11,7 @@ import java.io.IOException;
  * @since 10/25/16 1:17 PM
  */
 
-@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"homepage.jsp"})
+@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/login/*"})
 public class UserVerificationFilter implements Filter {
 
     private FilterConfig filterConfig;

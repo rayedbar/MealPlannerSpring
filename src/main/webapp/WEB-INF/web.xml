@@ -9,4 +9,16 @@
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>net.therap.mealplannerhibernate.servlets.SignupServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserMealPlannerServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewDishServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewMealServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewMealServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateMealServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.CreateMealServlet</servlet-class>
+    </servlet>
 </web-app>

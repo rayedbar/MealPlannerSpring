@@ -1,7 +1,6 @@
 package net.therap.mealplannerhibernate.service;
 
 import net.therap.mealplannerhibernate.entity.Dish;
-import net.therap.mealplannerhibernate.util.Display;
 import net.therap.mealplannerhibernate.util.Input;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,7 +43,7 @@ public class DishPlanner {
     }
 
 
-    public void viewDish(){
+    public List<Dish> viewDish(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -53,7 +52,8 @@ public class DishPlanner {
         session.getTransaction().commit();
         session.close();
 
-        Display.displayDish(dishList);
+        //Display.displayDish(dishList);
+        return dishList;
     }
 
     public void updateDish(){

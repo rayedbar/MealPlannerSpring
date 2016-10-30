@@ -95,21 +95,20 @@ public class MealPlanner {
     }
 
 
-    public void viewMeal() {
+    public List<Meal> getMeal() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Meal> list = session.createQuery("FROM Meal ORDER BY day asc").list();
         session.getTransaction().commit();
         session.close();
-        for (Meal meal : list) {
-            System.out.println(meal.getDay().toUpperCase() + " : " + meal.getType());
-            System.out.println(meal.getDishList());
-            System.out.println();
-        }
+
+        //System.out.println(list.get(0).getDay());
+
+        return list;
     }
 
     public void updateMeal() {
-        viewMeal();
+        getMeal();
 
         DishPlanner dishPlanner = new DishPlanner();
         dishPlanner.viewDish();

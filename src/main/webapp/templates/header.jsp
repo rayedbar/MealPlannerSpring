@@ -1,13 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: rayed
-  Date: 10/25/16
-  Time: 12:00 PM
+  Date: 10/27/16
+  Time: 11:12 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@include file="templates/header.jsp"%>--%>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +32,16 @@
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
 
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--%>
+
+    <script src="js/jquery-3.1.1.js"></script>
+
+    <script src="js/javascript.js" ></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,26 +50,3 @@
     <![endif]-->
 </head>
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1>Welcome to Meal Planner</h1>
-        </div>
-        <form class="form-signin" action="Login.do" method="POST">
-            <h2 class="form-signin-heading">Please log in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-            <br>
-            <div class="center-block">
-                <a href="signup.jsp">Sign up?</a>
-            </div>
-        </form>
-    </div> <!-- /container -->
-<%@include file="templates/footer.jsp"%>

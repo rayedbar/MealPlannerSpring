@@ -53,7 +53,7 @@ public class UI {
                     mealPlanner.addMeal();
                     break;
                 case 2:
-                    mealPlanner.viewMeal();
+                    mealPlanner.getMeal();
                     break;
                 case 3:
                     mealPlanner.updateMeal();
