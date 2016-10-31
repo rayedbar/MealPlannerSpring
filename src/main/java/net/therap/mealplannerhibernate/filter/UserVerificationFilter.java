@@ -30,12 +30,12 @@ public class UserVerificationFilter implements Filter {
 
         HttpSession session = httpServletRequest.getSession();
         String inputEmail = (String) session.getAttribute("inputEmail");
-        String inputPassword = (String) session.getAttribute("inputPassword");
+        //String inputPassword = (String) session.getAttribute("inputPassword");
 
-        if (inputEmail != null && inputPassword != null){
+        if (inputEmail != null){
             chain.doFilter(request, response);
         } else {
-            response.getWriter().write("<html><body><h1>Log In First</h1></body></html>");
+            response.getWriter().write("<h1>Log In First</h1>");
         }
     }
 

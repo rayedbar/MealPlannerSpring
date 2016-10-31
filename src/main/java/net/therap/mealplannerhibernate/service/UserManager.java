@@ -70,4 +70,22 @@ public class UserManager {
 
         return userList.get(0);
     }
+
+    public List<User> getUserList(){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("from User");
+        List<User> userList = query.list();
+//
+//        for (User user : userList){
+//            System.out.println(user.getEmail());
+//        }
+
+        session.getTransaction().commit();
+        session.close();
+
+
+        return userList;
+    }
 }

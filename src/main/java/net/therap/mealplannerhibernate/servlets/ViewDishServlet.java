@@ -17,7 +17,7 @@ import java.util.List;
  * @since 10/24/16 4:12 PM
  */
 
-@WebServlet(name = "ViewDishServlet", urlPatterns = {"/login/viewDish.do"})
+@WebServlet(name = "ViewDishServlet", urlPatterns = {"/login/getDish.do"})
 public class ViewDishServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,13 +26,16 @@ public class ViewDishServlet extends HttpServlet {
 
         DishPlanner dishPlanner = new DishPlanner();
 
-            List<Dish> dishList = dishPlanner.viewDish();
+            List<Dish> dishList = dishPlanner.getDish();
 //            request.setAttribute("dishList", dishList);
 //            request.getRequestDispatcher("/viewDishList.jsp").include(request,response);
+
 
         String json = new Gson().toJson(dishList);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+
+
         response.getWriter().write(json);
     }
 

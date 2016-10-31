@@ -1,7 +1,7 @@
 package net.therap.mealplannerhibernate.service;
 
 import net.therap.mealplannerhibernate.entity.Dish;
-import net.therap.mealplannerhibernate.util.Input;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -31,9 +31,9 @@ public class DishPlanner {
         }
     }
 
-    public void addDish(){
-        System.out.println("Enter name of dish");
-        String dish_name = Input.getStringInput();
+    public void addDish(String dish_name){
+//        System.out.println("Enter name of dish");
+//        String dish_name = Input.getStringInput();
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -43,7 +43,7 @@ public class DishPlanner {
     }
 
 
-    public List<Dish> viewDish(){
+    public List<Dish> getDish(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -56,14 +56,14 @@ public class DishPlanner {
         return dishList;
     }
 
-    public void updateDish(){
-        viewDish();
+    public void updateDish(String newDishName, String oldDishName){
+        //getDish();
 
-        System.out.println("Enter dish name to update");
-        String oldDishName = Input.getStringInput();
-
-        System.out.println("Enter new Dish Name");
-        String newDishName = Input.getStringInput();
+//        System.out.println("Enter dish name to update");
+//        String oldDishName = Input.getStringInput();
+//
+//        System.out.println("Enter new Dish Name");
+//        String newDishName = Input.getStringInput();
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -77,5 +77,21 @@ public class DishPlanner {
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    public void deleteDish(String dishName){
+
+        System.out.println(dishName);
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("delete from Dish where name = :dish_name");
+        query.setParameter("dish_name", dishName);
+        query.executeUpdate();
+
+        session.getTransaction().commit();
+        session.close();
+
     }
 }

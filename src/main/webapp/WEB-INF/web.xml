@@ -3,8 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
-
     <servlet>
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>net.therap.mealplannerhibernate.servlets.SignupServlet</servlet-class>
@@ -20,5 +18,21 @@
     <servlet>
         <servlet-name>CreateMealServlet</servlet-name>
         <servlet-class>net.therap.mealplannerhibernate.servlets.CreateMealServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUserServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getCurrentUserServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.GetCurrentUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDishServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.DeleteDishServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDishServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.AddDishServlet</servlet-class>
     </servlet>
 </web-app>

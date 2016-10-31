@@ -33,12 +33,12 @@ public class LoginServlet extends HttpServlet {
         if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")){
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
-            session.setAttribute("inputPassword", inputPassword);
+            //session.setAttribute("inputPassword", inputPassword);
             resp.sendRedirect("AdminPage.jsp");
         } else if (user != null){
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
-            session.setAttribute("inputPassword", inputPassword);
+            //session.setAttribute("inputPassword", inputPassword);
             resp.sendRedirect("HomePage.jsp");
         } else {
             resp.sendRedirect("loginerror.jsp");

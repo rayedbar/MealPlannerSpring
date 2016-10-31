@@ -2,42 +2,44 @@
  * Created by rayed on 10/27/16.
  */
 
-//$(document).ready(function(){
+    function viewDishList(userEmail) {
 
-    $('#viewDishList').click(function(){
-//        $.ajax({
-//            type: "post",
-//            url: "/login/viewDish.do",
-//            success: function(msg){
-//                $('#displayResult').append(msg);
-//            }
-//        });
-//        $('#viewDishList').css("border", "1px solid");
+        //var userEmail = getCurrentUser();
+
         $('#sectionHeader').text('Dish List');
 
         $(".active").removeClass("active");
 
-        $('#viewDishList').addClass("active");
+        $("#viewDishList").addClass("active");
 
         var $table = $("#displayTable");
         $table.empty();
         $table.append($('<tbody>'));
 
-        $.get("login/viewDish.do", function(responseJson) {
+        //console.log("1. " + userEmail);
 
-            //var i = 0;
 
-            $.each(responseJson, function(index, dish) {
-                $("<tr>").appendTo($table)
-                    .append($("<td>").text(index + 1))
+    $.get("login/getCurrentUser.do", function (user_email) {
+        var userEmail = user_email;
+        $.get("login/getDish.do", function (responseJson) {
+            $.each(responseJson, function (index, dish) {
+                var row = $("<tr>").appendTo($table);
+                row.append($("<td>").text(index + 1))
                     .append($("<td>").text(dish.name));
-             //   i = i + 1;
+                if (userEmail == "admin@gmail.com") {
+                    row.append($("<td>").append($("<label id='deleteDishLabel'>").text("Delete")));
+                    row.append($("<td>").append($("<label id='editDishLabel'>").text("Edit")));
+                }
             });
         });
+//        if (userEmail == "admin@gmail.com"){
+//            addDishForm(userEmail);
+//        }
     });
-//});
 
-    $('#viewMealList').click(function() {
+ }
+
+    function viewMealList(){
         $('#sectionHeader').text('Meal List');
 
         $(".active").removeClass("active");
@@ -48,52 +50,75 @@
         $table.empty();
         $table.append($('<tbody>'));
 
-        $.get("login/getMeal.do", function(responseJson) {
-
-            //var i = 0;
-
-            $.each(responseJson, function(i, meal) {
+        $.get("login/getMeal.do", function (responseJson) {
+            $.each(responseJson, function (i, meal) {
                 var row = $("<tr>").appendTo($table);
                 row.append($("<td>").text(i + 1))
                     .append($("<td>").text(meal.day))
                     .append($("<td>").text(meal.type));
-                $.each(meal.dishList, function(i , dish){
-                    row.append($("<td>").text(dish.name));
+                var data = ($("<td>")).appendTo(row);
+                $.each(meal.dishList, function (i, dish) {
+                    if (i == 0){
+                        data.text(dish.name);
+                    } else {
+                        data.text(data.text() + ", " + dish.name)
+                    }
                 });
-              //  i = i + 1;
             });
         });
 
+    }
 
+    function viewUserList(){
+        $('#sectionHeader').text('User List');
+
+        $(".active").removeClass("active");
+
+        $("#viewUserList").addClass("active");
+
+        var $table = $("#displayTable");
+        $table.empty();
+        $table.append($('<tbody>'));
+
+        $.get("login/getUser.do", function (responseJson) {
+            $.each(responseJson, function (i, user) {
+                var row = $("<tr>").appendTo($table);
+                row.append($("<td>").text(i + 1))
+                    .append($("<td>").text(user.email))
+                    .append($("<td>").text(user.password));
+            });
+        });
+    }
+
+    function deleteDish(dishName){
+        $.get("login/deleteDish.do", {dish_name: dishName}, function(){
+            viewDishList();
+        });
+    }
+
+    function editDish(dishName){
+        $("#tableDiv").empty();
+        $("#tableDiv").load("editDishForm.jsp?param=" + dishName);
+    }
+
+    $('#viewDishList').click(function(){
+        viewDishList();
     });
 
+    $('#viewMealList').click(function(){
+        viewMealList();
+    });
 
-//    $('#viewUserList').click(function(){
-//
-//        $$('#sectionHeader').text('Meal List');
-//
-//        $(".active").removeClass("active");
-//
-//        $("#viewMealList").addClass("active");
-//
-//        var $table = $("#displayTable");
-//        $table.empty();
-//        $table.append($('<tbody>'));
-//
-//        $.get("login/getMeal.do", function(responseJson) {
-//
-//            //var i = 0;
-//
-//            $.each(responseJson, function(i, meal) {
-//                var row = $("<tr>").appendTo($table);
-//                row.append($("<td>").text(i + 1))
-//                    .append($("<td>").text(meal.day))
-//                    .append($("<td>").text(meal.type));
-//                $.each(meal.dishList, function(i , dish){
-//                    row.append($("<td>").text(dish.name));
-//                });
-//                //  i = i + 1;
-//            });
-//        });
-//
-//    });
+    $('#viewUserList').click(function(){
+        viewUserList();
+    });
+
+    $("#displayTable").on("click", '#deleteDishLabel', function () {
+        var dishName = $(this).parent().prev().text();
+        deleteDish(dishName);
+    });
+
+    $("#tableDiv").on("click", '#editDishLabel', function () {
+        var dishName = $(this).parent().prev().prev().text();
+        editDish(dishName);
+    });

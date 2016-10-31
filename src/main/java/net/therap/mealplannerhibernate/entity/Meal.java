@@ -27,7 +27,7 @@ public class Meal implements Serializable{
     @Column(name = "meal_type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(
             name = "meal_has_dish",
             joinColumns = {@JoinColumn(name = "meal_id")},

@@ -21,13 +21,13 @@ public class UI {
             int input = Input.getNumericInput();
             switch (input) {
                 case 1:
-                    dishPlanner.addDish();
+                    //dishPlanner.addDish();
                     break;
                 case 2:
-                    dishPlanner.viewDish();
+                    dishPlanner.getDish();
                     break;
                 case 3:
-                    dishPlanner.updateDish();
+                    //  dishPlanner.updateDish();
                     break;
                 case 4:
                     Main.mainMenu();

@@ -38,7 +38,7 @@ public class MealPlanner {
 
     public void addMeal() {
         DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.viewDish();
+        dishPlanner.getDish();
 
         System.out.println("Enter Day");
         String day = Input.getStringInput();
@@ -111,7 +111,7 @@ public class MealPlanner {
         getMeal();
 
         DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.viewDish();
+        dishPlanner.getDish();
 
         System.out.println("Enter day");
         String day = Input.getStringInput();
