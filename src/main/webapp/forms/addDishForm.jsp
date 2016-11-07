@@ -6,10 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/templates/header.jsp"%>
+
 <form class="form-inline" method="post" action="login/addDish.do">
     <div class="form-group">
-        <label for="exampleInputName2">Dish Name</label>
-        <input type="text" class="form-control" id="exampleInputName2" name="addDish" placeholder="New Dish">
+        <label for="dishname">Dish Name</label>
+        <input type="text" class="form-control" id="dishname" name="addDish" placeholder="New Dish">
     </div>
     <button type="submit" class="btn btn-default">Add</button>
 </form>
+
+<%@include file="/templates/footer.jsp"%>

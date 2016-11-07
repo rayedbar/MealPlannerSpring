@@ -50,7 +50,7 @@ public class UI {
             int input = Input.getNumericInput();
             switch (input) {
                 case 1:
-                    mealPlanner.addMeal();
+//                    mealPlanner.addMeal();
                     break;
                 case 2:
                     mealPlanner.getMeal();

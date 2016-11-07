@@ -36,19 +36,19 @@ public class MealPlanner {
     }
 
 
-    public void addMeal() {
-        DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.getDish();
+    public void addMeal(String day, String type, String dishes) {
+//        DishPlanner dishPlanner = new DishPlanner();
+//        dishPlanner.getDish();
+//
+//        System.out.println("Enter Day");
+//        String day = Input.getStringInput();
+//        System.out.println("Enter Breakfast/Lunch/Dinner");
+//        String type = Input.getStringInput();
 
-        System.out.println("Enter Day");
-        String day = Input.getStringInput();
-        System.out.println("Enter Breakfast/Lunch/Dinner");
-        String type = Input.getStringInput();
-
-        if (mealPlanExists(day, type)){
-            System.out.println("Enter comma separated names");
-            String input = Input.getStringInput();
-            String[] dishNames = input.split(",");
+        if (!mealPlanExists(day, type)){
+//            System.out.println("Enter comma separated names");
+//            String dishes = Input.getStringInput();
+            String[] dishNames = dishes.split(",");
 
             Session session = sessionFactory.openSession();
             session.beginTransaction();
@@ -66,7 +66,7 @@ public class MealPlanner {
 
             Meal meal = new Meal(day, type, dishList);
 
-            session.save(meal);
+            session.saveOrUpdate(meal);
             session.getTransaction().commit();
             session.close();
         } else {
@@ -197,5 +197,14 @@ public class MealPlanner {
         session.close();
 
         Display.diplayMealByType(list);
+    }
+
+    public void deleteMeal(String day, String type, String dishes) {
+        String[] split = dishes.split(",");
+        List<Dish> dishList = new ArrayList<>();
+//        for (String dish : split){
+//            dishList.add(new Dish())
+//        }
+
     }
 }

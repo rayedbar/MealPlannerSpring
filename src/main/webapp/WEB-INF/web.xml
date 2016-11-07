@@ -35,4 +35,12 @@
         <servlet-name>AddDishServlet</servlet-name>
         <servlet-class>net.therap.mealplannerhibernate.servlets.AddDishServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMealServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.AddMealServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMealServlet</servlet-name>
+        <servlet-class>net.therap.mealplannerhibernate.servlets.DeleteMealServlet</servlet-class>
+    </servlet>
 </web-app>

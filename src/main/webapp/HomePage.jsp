@@ -21,15 +21,12 @@
                 <li><a href="#" id="viewMealList">View Meal</a></li>
                 <%--<li><a href="#">Export</a></li>--%>
             </ul>
-            <ul class="nav nav-sidebar">
-                <%--<li><a href="#" id="createMeal">Create Meal</a></li>--%>
-            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="dashboard">
 
             <h1 class="page-header">Dashboard</h1>
 
-            <h2 class="sub-header" id="sectionHeader">Section title</h2>
+            <h2 class="sub-header" id="sectionHeader">Welcome</h2>
             <div class="table-responsive" id="tableDiv">
                 <table class="table table-striped" id="displayTable">
 
