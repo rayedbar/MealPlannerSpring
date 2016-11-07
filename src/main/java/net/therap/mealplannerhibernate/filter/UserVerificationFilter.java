@@ -3,7 +3,6 @@ package net.therap.mealplannerhibernate.filter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -11,7 +10,7 @@ import java.io.IOException;
  * @since 10/25/16 1:17 PM
  */
 
-@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/login/*"})
+@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/usr/*"})
 public class UserVerificationFilter implements Filter {
 
     private FilterConfig filterConfig;
@@ -28,12 +27,18 @@ public class UserVerificationFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         //HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-        HttpSession session = httpServletRequest.getSession();
-        String inputEmail = (String) session.getAttribute("inputEmail");
+//        HttpSession session = httpServletRequest.getSession();
+
+        String inputEmail = httpServletRequest.getParameter("inputEmail");
+
+//        String inputEmail = (String) session.getAttribute("inputEmail");
+
+        System.out.println(inputEmail);
         //String inputPassword = (String) session.getAttribute("inputPassword");
 
         if (inputEmail != null){
             chain.doFilter(request, response);
+            //request.getRequestDispatcher("/usr/homepage").include(request, response);
         } else {
             response.getWriter().write("<h1>Log In First</h1>");
         }

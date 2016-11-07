@@ -6,15 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+    <spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJs"/>
+    <spring:url value="/resources/js/javascript.js" var="customJs"/>
+    <spring:url value="/resources/js/jquery-3.1.1.js" var="jquery"/>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-3.1.1.js"></script>
-
-    <script src="js/javascript.js"></script>
-
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${jquery}" rel="script"></script>
+    <script src="${bootstrapJs}" rel="script"></script>
+    <script src="${customJs}" rel="script"></script>
 </body>
 </html>
