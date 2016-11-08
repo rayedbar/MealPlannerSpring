@@ -16,6 +16,7 @@
 
 
     <title>Meal Planner</title>
+
     <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/css/bootstrap-theme.min.css" var="bootstrapThemeCss"/>
     <spring:url value="/resources/css/signin.css" var="signIn"/>

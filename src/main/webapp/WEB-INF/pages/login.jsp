@@ -11,7 +11,7 @@
         <div class="page-header">
             <h1>Welcome to Meal Planner</h1>
         </div>
-        <form class="form-signin" action="/usr/homepage" method="POST">
+        <form class="form-signin" action="/auth/verify" method="POST">
             <h2 class="form-signin-heading">Please log in</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>

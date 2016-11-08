@@ -1,7 +1,6 @@
 package net.therap.mealplannerhibernate.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -10,7 +9,7 @@ import java.io.IOException;
  * @since 10/25/16 1:17 PM
  */
 
-@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/usr/*"})
+//@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/usr/*"})
 public class UserVerificationFilter implements Filter {
 
     private FilterConfig filterConfig;

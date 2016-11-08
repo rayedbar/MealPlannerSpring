@@ -79,16 +79,21 @@ public class DishPlanner {
         session.close();
     }
 
-    public void deleteDish(String dishName){
+    public void deleteDish(int dishId){
 
-        System.out.println(dishName);
+        System.out.println(dishId);
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("delete from Dish where name = :dish_name");
-        query.setParameter("dish_name", dishName);
+        Query query = session.createQuery("delete from Dish where id = :dishId");
+        query.setParameter("dishId", dishId);
         query.executeUpdate();
+
+//
+//        Dish dish = new Dish();
+//        dish.setId(dishId);
+//        session.delete(dish);
 
         session.getTransaction().commit();
         session.close();

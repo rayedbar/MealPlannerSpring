@@ -29,23 +29,48 @@ function viewDishList(userEmail) {
     //console.log("1. " + userEmail);
 
 
-    $.get("login/getCurrentUser.do", function (user_email) {
+   $.get("/usr/get", function (user_email) {
         var userEmail = user_email;
-        $.get("login/getDish.do", function (responseJson) {
+        $.get("/usr/homepage/viewDish", function (responseJson) {
+
+            //console.log("sent ajax request");
             $.each(responseJson, function (index, dish) {
+                var dishId = dish.id;
+//                console.log(dishId);
                 var row = $("<tr>").appendTo($table);
                 row.append($("<td>").text(index + 1))
                     .append($("<td>").text(dish.name));
                 if (userEmail == "admin@gmail.com") {
-                    row.append($("<td>").append($("<label id='deleteDishLabel'>").text("Delete")));
-                    row.append($("<td>").append($("<label id='editDishLabel'>").text("Edit")));
+                    row.append($("<td>").append($("<label id='deleteDishLabel'>").text("Delete").data("dish-id", dishId)));
+                    row.append($("<td>").append($("<label id='editDishLabel'>").text("Edit").data("dish-id", dishId)));
                 }
             });
         });
-    });
-
+   });
 }
 
+function deleteDish(dishId) {
+    $.get("/usr/homepage/deleteDish", {dishId: dishId});
+}
+
+$("#tableDiv").on("click", '#deleteDishLabel', function () {
+    var dishId = $(this).data("dish-id");
+    deleteDish(dishId);
+});
+
+
+function editDish(dishId) {
+    $("#tableDiv").empty();
+    $("#tableDiv").load("/usr/homepage/editDishForm", {dishId: dishId}, function(){
+//        alert("load was performed");
+    });
+}
+
+
+$("#tableDiv").on("click", '#editDishLabel', function () {
+    var dishId = $(this).data("dish-id");
+    editDish(dishId);
+});
 
 function viewMealList() {
     $('#sectionHeader').text('Meal List');
@@ -129,16 +154,8 @@ function viewUserList() {
     });
 }
 
-function deleteDish(dishName) {
-    $.get("login/deleteDish.do", {dish_name: dishName}, function () {
-        viewDishList();
-    });
-}
 
-function editDish(dishName) {
-    $("#tableDiv").empty();
-    $("#tableDiv").load("editDishForm.jsp?param=" + dishName);
-}
+
 
 $('#viewDishList').click(function () {
     //$("#addForm").show();
@@ -176,13 +193,6 @@ $("#addMeal").on("click", function(){
 });
 
 
-$("#tableDiv").on("click", '#deleteDishLabel', function () {
-    var dishName = $(this).parent().prev().text();
-    deleteDish(dishName);
-});
 
-$("#tableDiv").on("click", '#editDishLabel', function () {
-    var dishName = $(this).parent().prev().prev().text();
-    editDish(dishName);
-});
+
 
