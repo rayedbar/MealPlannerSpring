@@ -22,6 +22,6 @@ public class AddDishServlet extends HttpServlet {
         DishPlanner dishPlanner = new DishPlanner();
         dishPlanner.addDish(addDish);
 
-        response.sendRedirect(request.getContextPath() +  "/AdminPage.jsp");
+        response.sendRedirect(request.getContextPath() +  "/adminHomePage.jsp");
     }
 }

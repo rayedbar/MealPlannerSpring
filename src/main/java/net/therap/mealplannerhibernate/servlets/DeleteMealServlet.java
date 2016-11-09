@@ -22,7 +22,7 @@ public class DeleteMealServlet extends HttpServlet {
         String dishes = request.getParameter("dishes");
 
         MealPlanner mealPlanner = new MealPlanner();
-        mealPlanner.deleteMeal(day, type, dishes);
+//        mealPlanner.deleteMeal(day, type, dishes);
 
         //TODO
     }

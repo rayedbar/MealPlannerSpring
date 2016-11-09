@@ -56,7 +56,7 @@ public class DishPlanner {
         return dishList;
     }
 
-    public void updateDish(String newDishName, String oldDishName){
+    public void updateDish(int dishId, String newDishName){
         //getDish();
 
 //        System.out.println("Enter dish name to update");
@@ -68,9 +68,14 @@ public class DishPlanner {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List<Dish> dishList = session.createQuery("from Dish where name = :dishName").setParameter("dishName", oldDishName).list();
+//        List<Dish> dishList = session.createQuery("from Dish where id = :dishId").setParameter("dishName", oldDishName).list();
+//
+//        Dish dish = dishList.get(0);
+//        dish.setName(newDishName);
+//
+//        session.update(dish);
 
-        Dish dish = dishList.get(0);
+        Dish dish = session.get(Dish.class, dishId);
         dish.setName(newDishName);
 
         session.update(dish);

@@ -34,12 +34,12 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
             //session.setAttribute("inputPassword", inputPassword);
-            resp.sendRedirect("AdminPage.jsp");
+            resp.sendRedirect("adminHomePage.jsp");
         } else if (user != null){
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
             //session.setAttribute("inputPassword", inputPassword);
-            resp.sendRedirect("HomePage.jsp");
+            resp.sendRedirect("userHomePage.jsp");
         } else {
             resp.sendRedirect("loginerror.jsp");
         }

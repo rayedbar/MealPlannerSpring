@@ -17,22 +17,25 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-@RequestMapping(value = "/auth")
+@RequestMapping("/")
 public class AuthenticationController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model){
+    @RequestMapping("/")
+    public String entry(){
+        return "redirect:/auth/login";
+    }
 
+    @RequestMapping(value = "/auth/login", method = RequestMethod.GET)
+    public String login(Model model){
         return "login";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth/signup", method = RequestMethod.GET)
     public String signup(){
-
         return "signup";
     }
 
-    @RequestMapping(value = "/verify", method = RequestMethod.POST)
+    @RequestMapping(value = "/auth/verify", method = RequestMethod.POST)
     public String verify(HttpServletRequest req, HttpServletResponse resp){
 
         String inputEmail = req.getParameter("inputEmail");
@@ -49,13 +52,13 @@ public class AuthenticationController {
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
             //session.setAttribute("inputPassword", inputPassword);
-//            resp.sendRedirect("AdminPage.jsp");
+//            resp.sendRedirect("adminHomePage.jsp");
             return "redirect:/admin/homepage";
         } else if (user != null){
             HttpSession session = req.getSession();
             session.setAttribute("inputEmail", inputEmail);
             //session.setAttribute("inputPassword", inputPassword);
-//            resp.sendRedirect("HomePage.jsp");
+//            resp.sendRedirect("userHomePage.jsp");
             return "redirect:/usr/homepage";
         } else {
 //            resp.sendRedirect("loginerror.jsp");

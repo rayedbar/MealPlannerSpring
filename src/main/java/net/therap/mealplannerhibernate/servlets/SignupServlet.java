@@ -31,7 +31,7 @@ public class SignupServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("inputEmail", inputEmail);
             session.setAttribute("inputPassword", inputPassword);
-            response.sendRedirect("HomePage.jsp");
+            response.sendRedirect("userHomePage.jsp");
         } else {
             //request.getSession().setAttribute("error", "failed");
             request.setAttribute("message", "sign up failed");

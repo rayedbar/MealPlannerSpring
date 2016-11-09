@@ -18,7 +18,7 @@ public class UserController {
     @RequestMapping(value = "/usr/homepage")
     public String homepage(){
 
-        return "HomePage";
+        return "userHomePage";
     }
 
     @ResponseBody

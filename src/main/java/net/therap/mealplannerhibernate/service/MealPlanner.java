@@ -107,50 +107,55 @@ public class MealPlanner {
         return list;
     }
 
-    public void updateMeal() {
-        getMeal();
-
-        DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.getDish();
-
-        System.out.println("Enter day");
-        String day = Input.getStringInput();
-        System.out.println("Enter type");
-        String type = Input.getStringInput();
-        System.out.println("Enter dish name to update");
-        String oldDishName = Input.getStringInput();
-        System.out.println("Enter new dish name as per dish list");
-        String newDishName = Input.getStringInput();
+    public void updateMeal(int mealId, String day, String type) {
+//        getMeal();
+//
+//        DishPlanner dishPlanner = new DishPlanner();
+//        dishPlanner.getDish();
+//
+//        System.out.println("Enter day");
+//        String day = Input.getStringInput();
+//        System.out.println("Enter type");
+//        String type = Input.getStringInput();
+//        System.out.println("Enter dish name to update");
+//        String oldDishName = Input.getStringInput();
+//        System.out.println("Enter new dish name as per dish list");
+//        String newDishName = Input.getStringInput();
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from Meal where day = :day and type = :type");
-        query.setParameter("day", day);
-        query.setParameter("type", type);
-
-        List<Meal> mealList = query.list();
-        Meal meal = mealList.get(0);
-
-        List<Dish> dishList = meal.getDishList();
-
-        for (Dish dish : dishList) {
-            if (dish.getName().equals(oldDishName)) {
-                dishList.remove(dish);
-                break;
-            }
-        }
-
-        Query q = session.createQuery("from Dish where name = :newDishName");
-        q.setParameter("newDishName", newDishName);
-
-        List<Dish> list = q.list();
-        dishList.add(list.get(0));
-        meal.setDishList(dishList);
+        Meal meal = session.get(Meal.class, mealId);
+        meal.setDay(day);
+        meal.setType(type);
 
         session.update(meal);
+
         session.getTransaction().commit();
         session.close();
+
+//        Query query = session.createQuery("from Meal where day = :day and type = :type");
+//        query.setParameter("day", day);
+//        query.setParameter("type", type);
+//
+//        List<Meal> mealList = query.list();
+//        Meal meal = mealList.get(0);
+//
+//        List<Dish> dishList = meal.getDishList();
+//
+//        for (Dish dish : dishList) {
+//            if (dish.getName().equals(oldDishName)) {
+//                dishList.remove(dish);
+//                break;
+//            }
+//        }
+//
+//        Query q = session.createQuery("from Dish where name = :newDishName");
+//        q.setParameter("newDishName", newDishName);
+//
+//        List<Dish> list = q.list();
+//        dishList.add(list.get(0));
+//        meal.setDishList(dishList);
     }
 
     public void viewMealByDay() {
@@ -199,12 +204,28 @@ public class MealPlanner {
         Display.diplayMealByType(list);
     }
 
-    public void deleteMeal(String day, String type, String dishes) {
-        String[] split = dishes.split(",");
-        List<Dish> dishList = new ArrayList<>();
+    public void deleteMeal(int mealId) {
+//        String[] split = dishes.split(",");
+//        List<Dish> dishList = new ArrayList<>();
 //        for (String dish : split){
 //            dishList.add(new Dish())
 //        }
+
+//        int meal_id = Integer.parseInt(mealId);
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("delete from Meal where id = :mealId");
+        query.setParameter("mealId", mealId);
+        query.executeUpdate();
+
+//        Query query = session.createQuery("delete from Dish where id = :dishId");
+//        query.setParameter("dishId", dishId);
+//        query.executeUpdate();
+
+        session.getTransaction().commit();
+        session.close();
 
     }
 }

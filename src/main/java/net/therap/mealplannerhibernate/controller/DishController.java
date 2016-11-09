@@ -4,10 +4,11 @@ import com.google.gson.Gson;
 import net.therap.mealplannerhibernate.entity.Dish;
 import net.therap.mealplannerhibernate.service.DishPlanner;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +20,11 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/usr/homepage")
+@RequestMapping(value = {"/dish"})
 public class DishController {
 
     @ResponseBody
-    @RequestMapping(value = "/viewDish", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
     public String viewDish(HttpServletResponse response){
         DishPlanner dishPlanner = new DishPlanner();
 
@@ -47,7 +48,7 @@ public class DishController {
     }
 
 
-    @RequestMapping(value = "/deleteDish", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteDish(HttpServletRequest request){
         int dishId = Integer.parseInt(request.getParameter("dishId"));
         DishPlanner dishPlanner = new DishPlanner();
@@ -56,15 +57,25 @@ public class DishController {
         return "redirect:/usr/homepage";
     }
 
-    @RequestMapping(value = "/editDish", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editDish(HttpServletRequest request){
-        String dishId = request.getParameter("param");
-        System.out.println(dishId);
-        return null;
+        int dishId = Integer.parseInt(request.getParameter("dishId"));
+//        System.out.println(dishId);
+        String dishName = request.getParameter("newDishName");
+
+        DishPlanner dishPlanner = new DishPlanner();
+        dishPlanner.updateDish(dishId, dishName);
+
+        return "adminHomePage";
     }
 
     @RequestMapping(value = "/editDishForm", method = RequestMethod.GET)
-    public String getEditDishForm(@PathVariable int dishId){
-        return "editDishForm";
+    @ResponseBody
+    public ModelAndView getEditDishForm(@RequestParam("dishId") int dishId, ModelAndView modelMap){
+//        model.addAttribute("dishId", dishId);
+//        System.out.println(dishId);
+        modelMap.setViewName("editDishForm");
+        modelMap.addObject("dishId", dishId);
+        return modelMap;
     }
 }

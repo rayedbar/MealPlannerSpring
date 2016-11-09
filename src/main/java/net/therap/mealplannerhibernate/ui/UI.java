@@ -56,7 +56,7 @@ public class UI {
                     mealPlanner.getMeal();
                     break;
                 case 3:
-                    mealPlanner.updateMeal();
+//                    mealPlanner.updateMeal();
                     break;
                 case 4:
                     mealPlanner.viewMealByType();

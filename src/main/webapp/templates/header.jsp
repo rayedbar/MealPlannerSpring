@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +20,12 @@
     <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss"/>
     <spring:url value="/resources/css/bootstrap-theme.min.css" var="bootstrapThemeCss"/>
     <spring:url value="/resources/css/signin.css" var="signIn"/>
+    <spring:url value="/resources/css/dashboard.css" var="dashboard"/>
 
-    <link href="${bootstrapCss}"  rel="stylesheet" />
-    <link href="${bootstrapThemeCss}" rel="stylesheet">
-    <link href="${signIn}" rel="stylesheet" />
 
+    <link href="${bootstrapCss}" rel="stylesheet"/>
+    <link href="${bootstrapThemeCss}" rel="stylesheet"/>
+    <link href="${signIn}" rel="stylesheet"/>
+    <link href="${dashboard}" rel="stylesheet"/>
 </head>
 <body>

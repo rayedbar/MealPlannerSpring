@@ -2,13 +2,9 @@
  * Created by rayed on 10/27/16.
  */
 
-function viewDishList(userEmail) {
+// Dish js begins
 
-//    console.log(document.URL);
-//
-//    var param = document.URL.split('#')[1];
-//
-//    console.log(param)
+function viewDishList(userEmail) {
 
     $('#sectionHeader').text('Dish List');
 
@@ -26,51 +22,59 @@ function viewDishList(userEmail) {
 
     $tableDiv.append($table);
 
-    //console.log("1. " + userEmail);
-
-
    $.get("/usr/get", function (user_email) {
         var userEmail = user_email;
-        $.get("/usr/homepage/viewDish", function (responseJson) {
-
-            //console.log("sent ajax request");
+        $.get("/dish/view", function (responseJson) {
             $.each(responseJson, function (index, dish) {
                 var dishId = dish.id;
-//                console.log(dishId);
                 var row = $("<tr>").appendTo($table);
                 row.append($("<td>").text(index + 1))
                     .append($("<td>").text(dish.name));
                 if (userEmail == "admin@gmail.com") {
                     row.append($("<td>").append($("<label id='deleteDishLabel'>").text("Delete").data("dish-id", dishId)));
-                    row.append($("<td>").append($("<label id='editDishLabel'>").text("Edit").data("dish-id", dishId)));
+                    row.append($("<td>").append($("<label id='editDishLabel'>").text("Edit").data("dish-info", {first: dishId, second: dish.name})));
                 }
             });
         });
    });
 }
 
-function deleteDish(dishId) {
-    $.get("/usr/homepage/deleteDish", {dishId: dishId});
+function editDish(dishId, dishName) {
+    $("#tableDiv").empty();
+
+    $.get("/dish/editDishForm", {dishId: dishId}, function(response) {
+        $("#tableDiv").append(response);
+    });
+
+    $("#sectionHeader").text("Enter new dish name for " + dishName);
 }
+
+function deleteDish(dishId) {
+    $.get("/dish/delete", {dishId: dishId});
+}
+
+
+$("#tableDiv").on("click", '#editDishLabel', function () {
+    var dishId = $(this).data("dish-info").first;
+    var dishName = $(this).data("dish-info").second;
+    editDish(dishId, dishName);
+});
+
+$('#viewDishList').click(function () {
+    //$("#addForm").show();
+    viewDishList();
+});
 
 $("#tableDiv").on("click", '#deleteDishLabel', function () {
     var dishId = $(this).data("dish-id");
     deleteDish(dishId);
 });
 
-
-function editDish(dishId) {
-    $("#tableDiv").empty();
-    $("#tableDiv").load("/usr/homepage/editDishForm", {dishId: dishId}, function(){
-//        alert("load was performed");
-    });
-}
+// Dish js ends
 
 
-$("#tableDiv").on("click", '#editDishLabel', function () {
-    var dishId = $(this).data("dish-id");
-    editDish(dishId);
-});
+
+// Meal js begins
 
 function viewMealList() {
     $('#sectionHeader').text('Meal List');
@@ -89,7 +93,8 @@ function viewMealList() {
 
     $tableDiv.append($table);
 
-    $.get("login/getMeal.do", function (responseJson) {
+    $.get("/meal/view", function (responseJson) {
+//        alert(responseJson);
         $.each(responseJson, function (i, meal) {
             var row = $("<tr>").appendTo($table);
             row.append($("<td>").text(i + 1))
@@ -103,30 +108,64 @@ function viewMealList() {
                     data.text(data.text() + ", " + dish.name)
                 }
             });
-            row.append($("<td>").append($("<label id='deleteMealLabel'>").text("Delete")));
-            row.append($("<td>").append($("<label id='editMealLabel'>").text("Edit")));
+            row.append($("<td>").append($("<label id='deleteMealLabel'>").text("Delete").data("meal-id", meal.id)));
+            row.append($("<td>").append($("<label id='editMealLabel'>").text("Edit").data("meal-id", meal.id)));
         });
     });
-
 }
 
-
-function deleteMeal(day, type, dishes){
-    $.get("login/deleteMeal.do", {day: day, type: type, dishes: dishes}, function () {
+function deleteMeal(mealId){
+    $.get("/meal/delete", {mealId: mealId}, function () {
         viewMealList();
     });
 }
 
-$("#tableDiv").on("click", '#deleteMealLabel', function () {
-    var dishes = $(this).parent().prev().text();
-    var type = $(this).parent().prev().prev().text();
-    var day = $(this).parent().prev().prev().prev().text();
-    //console.log(type + " " + day + " " + dishes);
+function addMeal() {
+    $("#tableDiv").empty();
+    $("#tableDiv").load("forms/addMealForm.jsp");
+}
 
-    deleteMeal(day, type, dishes);
-    //deleteDish(dishName);
+function addDish() {
+    $("#tableDiv").empty();
+    $("#tableDiv").load("forms/addDishForm.jsp");
+}
+
+function editMeal(mealId){
+    $("#tableDiv").empty();
+
+    $.get("/meal/editMealForm", {mealId: mealId}, function(response) {
+        $("#tableDiv").append(response);
+    });
+
+    $("#sectionHeader").text("Enter new day, type and comma separated dish");
+}
+
+$('#tableDiv').on("click", '#editMealLabel', function () {
+    var mealId = $(this).data("meal-id");
+    editMeal(mealId);
+});
+
+$('#viewMealList').click(function () {
+    viewMealList();
+});
+
+
+$("#tableDiv").on("click", '#deleteMealLabel', function () {
+    var mealId = $(this).data("meal-id");
+    deleteMeal(mealId);
 })
 
+$("#addDish").on("click", function(){
+    addDish();
+});
+
+$("#addMeal").on("click", function(){
+    addMeal();
+});
+
+// Meal js ends
+
+// User js begins
 
 function viewUserList() {
     $('#sectionHeader').text('User List');
@@ -156,43 +195,7 @@ function viewUserList() {
 
 
 
-
-$('#viewDishList').click(function () {
-    //$("#addForm").show();
-    viewDishList();
-});
-
-$('#viewMealList').click(function () {
-    //$("#addForm").show();
-    viewMealList();
-});
-
 $('#viewUserList').click(function () {
-   // $("#addForm").show();
+    // $("#addForm").show();
     viewUserList();
 });
-
-
-function addDish() {
-    $("#tableDiv").empty();
-    $("#tableDiv").load("forms/addDishForm.jsp");
-}
-
-$("#addDish").on("click", function(){
-    addDish();
-});
-
-
-function addMeal() {
-    $("#tableDiv").empty();
-    $("#tableDiv").load("forms/addMealForm.jsp");
-}
-
-$("#addMeal").on("click", function(){
-    addMeal();
-});
-
-
-
-
-

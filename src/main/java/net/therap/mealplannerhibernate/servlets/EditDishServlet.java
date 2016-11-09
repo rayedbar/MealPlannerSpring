@@ -25,9 +25,9 @@ public class EditDishServlet extends HttpServlet {
         String name1 = req.getParameter("oldDishName");
 
         DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.updateDish(name, name1);
+//        dishPlanner.updateDish(name, name1);
 
-        resp.sendRedirect(req.getContextPath() + "/AdminPage.jsp");
-       // req.getRequestDispatcher(req.getContextPath() + "/AdminPage.jsp").include(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/adminHomePage.jsp");
+       // req.getRequestDispatcher(req.getContextPath() + "/adminHomePage.jsp").include(req, resp);
     }
 }

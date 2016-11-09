@@ -13,6 +13,8 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/homepage")
     public String adminpage(){
-        return "AdminPage";
+        return "adminHomePage";
     }
+
+
 }

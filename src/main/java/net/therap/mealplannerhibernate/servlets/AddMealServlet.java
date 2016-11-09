@@ -25,6 +25,6 @@ public class AddMealServlet extends HttpServlet {
 
         mealPlanner.addMeal(enterDay, enterType, enterDish);
 
-        response.sendRedirect(request.getContextPath() +  "/AdminPage.jsp");
+        response.sendRedirect(request.getContextPath() +  "/adminHomePage.jsp");
     }
 }
