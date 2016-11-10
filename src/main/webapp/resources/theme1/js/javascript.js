@@ -70,6 +70,16 @@ $("#tableDiv").on("click", '#deleteDishLabel', function () {
     deleteDish(dishId);
 });
 
+
+function addDish() {
+    $("#tableDiv").empty();
+    $("#tableDiv").load("/dish/addDishForm");
+}
+
+$("#addDish").click(function(){
+      addDish();
+});
+
 // Dish js ends
 
 
@@ -122,13 +132,10 @@ function deleteMeal(mealId){
 
 function addMeal() {
     $("#tableDiv").empty();
-    $("#tableDiv").load("forms/addMealForm.jsp");
+    $("#tableDiv").load("/meal/addMealForm");
 }
 
-function addDish() {
-    $("#tableDiv").empty();
-    $("#tableDiv").load("forms/addDishForm.jsp");
-}
+
 
 function editMeal(mealId){
     $("#tableDiv").empty();
@@ -155,9 +162,9 @@ $("#tableDiv").on("click", '#deleteMealLabel', function () {
     deleteMeal(mealId);
 })
 
-$("#addDish").on("click", function(){
-    addDish();
-});
+//$("#addDish").on("click", function(){
+//    addDish();
+//});
 
 $("#addMeal").on("click", function(){
     addMeal();
@@ -183,12 +190,13 @@ function viewUserList() {
     $table.append($('<tbody>'));
 
     $tableDiv.append($table);
-    $.get("login/getUser.do", function (responseJson) {
+    $.get("/usr/view", function (responseJson) {
         $.each(responseJson, function (i, user) {
             var row = $("<tr>").appendTo($table);
             row.append($("<td>").text(i + 1))
                 .append($("<td>").text(user.email))
-                .append($("<td>").text(user.password));
+                .append($("<td>").text(user.password))
+                .append($("<td>").append($("<label id='deleteUserLabel'>").text("Delete").data("user-id", user.id)));
         });
     });
 }
@@ -196,6 +204,17 @@ function viewUserList() {
 
 
 $('#viewUserList').click(function () {
-    // $("#addForm").show();
     viewUserList();
 });
+
+
+function deleteUser(userId){
+    $.get("/usr/delete", {userId: userId}, function(){
+        viewUserList();
+    })
+}
+
+$("#tableDiv").on("click", '#deleteUserLabel', function () {
+    var userId = $(this).data("user-id");
+    deleteUser(userId);
+})

@@ -31,11 +31,7 @@ public class DishPlanner {
         }
     }
 
-    public void addDish(String dish_name){
-//        System.out.println("Enter name of dish");
-//        String dish_name = Input.getStringInput();
-
-        Session session = sessionFactory.openSession();
+    public void addDish(String dish_name){Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(new Dish(dish_name));
         session.getTransaction().commit();
@@ -51,43 +47,22 @@ public class DishPlanner {
 
         session.getTransaction().commit();
         session.close();
-
-        //Display.displayDish(dishList);
         return dishList;
     }
 
     public void updateDish(int dishId, String newDishName){
-        //getDish();
-
-//        System.out.println("Enter dish name to update");
-//        String oldDishName = Input.getStringInput();
-//
-//        System.out.println("Enter new Dish Name");
-//        String newDishName = Input.getStringInput();
-
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-//        List<Dish> dishList = session.createQuery("from Dish where id = :dishId").setParameter("dishName", oldDishName).list();
-//
-//        Dish dish = dishList.get(0);
-//        dish.setName(newDishName);
-//
-//        session.update(dish);
 
         Dish dish = session.get(Dish.class, dishId);
         dish.setName(newDishName);
 
         session.update(dish);
-
         session.getTransaction().commit();
         session.close();
     }
 
     public void deleteDish(int dishId){
-
-        System.out.println(dishId);
-
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -95,13 +70,7 @@ public class DishPlanner {
         query.setParameter("dishId", dishId);
         query.executeUpdate();
 
-//
-//        Dish dish = new Dish();
-//        dish.setId(dishId);
-//        session.delete(dish);
-
         session.getTransaction().commit();
         session.close();
-
     }
 }

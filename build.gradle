@@ -1,16 +1,9 @@
 apply plugin: 'java'
-
 apply plugin: 'application'
-
 apply plugin: 'war'
 
-//apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
 sourceCompatibility = 1.7
-
 version = 1.0
-
-mainClassName = "net.therap.mealplannerhibernate.app.Main"
 
 repositories {
     mavenCentral()
@@ -19,16 +12,11 @@ repositories {
 dependencies {
     runtime group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
     compile 'org.hibernate:hibernate-core:5.1.2.Final'
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     compile 'com.google.code.gson:gson:1.7.2'
-
-    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-
-
-    compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
-
+    compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
     compile 'javax.servlet:servlet-api:2.5'
-
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
 }
