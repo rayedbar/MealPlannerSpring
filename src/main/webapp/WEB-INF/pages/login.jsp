@@ -28,5 +28,5 @@
                 <a href="/auth/signup">Sign up?</a>
             </div>
         </form>
-    </div> <!-- /container -->
+    </div>
 <%@include file="/templates/footer.jsp"%>
