@@ -1,9 +1,7 @@
 package net.therap.mealplannerhibernate.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -11,7 +9,7 @@ import java.io.IOException;
  * @since 10/25/16 1:17 PM
  */
 
-@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/login/*"})
+//@WebFilter(filterName = "UserVerificationFilter", urlPatterns = {"/usr/*"})
 public class UserVerificationFilter implements Filter {
 
     private FilterConfig filterConfig;
@@ -23,15 +21,8 @@ public class UserVerificationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("Servlet Filter arrived");
-
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        //HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-
-        HttpSession session = httpServletRequest.getSession();
-        String inputEmail = (String) session.getAttribute("inputEmail");
-        //String inputPassword = (String) session.getAttribute("inputPassword");
-
+        String inputEmail = httpServletRequest.getParameter("inputEmail");
         if (inputEmail != null){
             chain.doFilter(request, response);
         } else {

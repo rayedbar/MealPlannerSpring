@@ -31,11 +31,7 @@ public class DishPlanner {
         }
     }
 
-    public void addDish(String dish_name){
-//        System.out.println("Enter name of dish");
-//        String dish_name = Input.getStringInput();
-
-        Session session = sessionFactory.openSession();
+    public void addDish(String dish_name){Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(new Dish(dish_name));
         session.getTransaction().commit();
@@ -51,47 +47,30 @@ public class DishPlanner {
 
         session.getTransaction().commit();
         session.close();
-
-        //Display.displayDish(dishList);
         return dishList;
     }
 
-    public void updateDish(String newDishName, String oldDishName){
-        //getDish();
-
-//        System.out.println("Enter dish name to update");
-//        String oldDishName = Input.getStringInput();
-//
-//        System.out.println("Enter new Dish Name");
-//        String newDishName = Input.getStringInput();
-
+    public void updateDish(int dishId, String newDishName){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List<Dish> dishList = session.createQuery("from Dish where name = :dishName").setParameter("dishName", oldDishName).list();
-
-        Dish dish = dishList.get(0);
+        Dish dish = session.get(Dish.class, dishId);
         dish.setName(newDishName);
 
         session.update(dish);
-
         session.getTransaction().commit();
         session.close();
     }
 
-    public void deleteDish(String dishName){
-
-        System.out.println(dishName);
-
+    public void deleteDish(int dishId){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("delete from Dish where name = :dish_name");
-        query.setParameter("dish_name", dishName);
+        Query query = session.createQuery("delete from Dish where id = :dishId");
+        query.setParameter("dishId", dishId);
         query.executeUpdate();
 
         session.getTransaction().commit();
         session.close();
-
     }
 }

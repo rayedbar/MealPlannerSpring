@@ -31,7 +31,6 @@ public class UserManager {
     }
 
     public boolean addUser(String inputEmail, String inputPassword){
-
         User user = new User(inputEmail, inputPassword);
 
         Session session = sessionFactory.openSession();
@@ -41,8 +40,6 @@ public class UserManager {
             session.save(user);
             session.getTransaction().commit();
         } catch (Exception e){
-            //session.getTransaction().rollback();
-            System.err.println("User already exists");
             return false;
         } finally {
             session.close();
@@ -67,7 +64,6 @@ public class UserManager {
         if (userList.size() == 0){
             return null;
         }
-
         return userList.get(0);
     }
 
@@ -77,15 +73,21 @@ public class UserManager {
 
         Query query = session.createQuery("from User");
         List<User> userList = query.list();
-//
-//        for (User user : userList){
-//            System.out.println(user.getEmail());
-//        }
 
         session.getTransaction().commit();
         session.close();
-
-
         return userList;
+    }
+
+    public void deleteUser(int userId) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("delete from User where id = :userId");
+        query.setParameter("userId", userId);
+        query.executeUpdate();
+
+        session.getTransaction().commit();
+        session.close();
     }
 }

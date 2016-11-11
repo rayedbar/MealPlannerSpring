@@ -3,44 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <display-name>Spring MVC Application</display-name>
+
     <servlet>
-        <servlet-name>SignupServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.SignupServlet</servlet-class>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>UserMealPlannerServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewDishServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ViewMealServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewMealServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateMealServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.CreateMealServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ViewUserServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.ViewUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>getCurrentUserServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.GetCurrentUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteDishServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.DeleteDishServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddDishServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.AddDishServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddMealServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.AddMealServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteMealServlet</servlet-name>
-        <servlet-class>net.therap.mealplannerhibernate.servlets.DeleteMealServlet</servlet-class>
-    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
