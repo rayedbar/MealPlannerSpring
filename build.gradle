@@ -19,4 +19,15 @@ dependencies {
     compile 'javax.servlet:servlet-api:2.5'
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+
+//    compile 'org.springframework.data:spring-data-jpa:1.10.4.RELEASE'
+
+//    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+//    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+//
+//    // https://mvnrepository.com/artifact/org.slf4j/com.springsource.slf4j.org.apache.commons.logging
+//    compile group: 'org.slf4j', name: 'com.springsource.slf4j.org.apache.commons.logging', version: '1.6.1'
+
+
+
 }

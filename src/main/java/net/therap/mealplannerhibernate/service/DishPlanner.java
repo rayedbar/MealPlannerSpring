@@ -31,7 +31,8 @@ public class DishPlanner {
         }
     }
 
-    public void addDish(String dish_name){Session session = sessionFactory.openSession();
+    public void addDish(String dish_name){
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(new Dish(dish_name));
         session.getTransaction().commit();

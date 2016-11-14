@@ -1,7 +1,5 @@
 package net.therap.mealplannerhibernate.controller;
 
-import com.google.gson.Gson;
-import net.therap.mealplannerhibernate.entity.Dish;
 import net.therap.mealplannerhibernate.service.DishPlanner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author rayed
@@ -23,24 +19,23 @@ import java.util.List;
 @RequestMapping(value = {"/dish"})
 public class DishController {
 
+//    @Autowired
+//    DishRepository repository;
+
     @ResponseBody
     @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
-    public String viewDish(HttpServletResponse response) {
-        DishPlanner dishPlanner = new DishPlanner();
-        List<Dish> dishList = dishPlanner.getDish();
-
-        //TODO jackson
-
-        String json = new Gson().toJson(dishList);
-        return json;
+    public String viewDish() {
+//        List<Dish> dishList = (List<Dish>) repository.findAll();
+//        //TODO jackson
+//        String json = new Gson().toJson(dishList);
+//        return json;
+        return "adminHomePage";
     }
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteDish(HttpServletRequest request) {
-        int dishId = Integer.parseInt(request.getParameter("dishId"));
-        DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.deleteDish(dishId);
+    public String deleteDish(@RequestParam("dishId") int dishId) {
+//        repository.delete((long) dishId);
         return "redirect:/usr/homepage";
     }
 
@@ -48,8 +43,13 @@ public class DishController {
     public String editDish(HttpServletRequest request) {
         int dishId = Integer.parseInt(request.getParameter("dishId"));
         String dishName = request.getParameter("newDishName");
-        DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.updateDish(dishId, dishName);
+
+//        Dish dish = repository.findById((long) dishId);
+//        DishPlanner dishPlanner = new DishPlanner();
+//        dishPlanner.updateDish(dishId, dishName);
+//        dish.setName(dishName);
+//        repository.save(dish);
+//
         return "adminHomePage";
     }
 
