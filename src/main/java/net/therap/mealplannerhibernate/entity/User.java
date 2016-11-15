@@ -3,6 +3,8 @@ package net.therap.mealplannerhibernate.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -20,6 +22,8 @@ public class User implements Serializable{
     @Column(name = "user_id")
     private int id;
 
+    @NotNull
+    @Size(min = 20)
     @Column(name = "user_email", nullable = false)
     private String email;
 

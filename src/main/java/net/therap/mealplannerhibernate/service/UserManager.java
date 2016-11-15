@@ -50,6 +50,8 @@ public class UserManager {
 
     public User getUser(String inputEmail, String inputPassword) {
         Session session = sessionFactory.openSession();
+//        SessionFactory factory = HibernateUtil.getSessionFactory();
+//        Session session = factory.getCurrentSession();
         session.beginTransaction();
 
         Query query = session.createQuery("from User where email = :email and password = :password");

@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     runtime group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
-    compile 'org.hibernate:hibernate-core:5.1.2.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.1.2.Final'
     compile 'com.google.code.gson:gson:1.7.2'
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
@@ -20,7 +20,16 @@ dependencies {
     providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
 
-//    compile 'org.springframework.data:spring-data-jpa:1.10.4.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.3.RELEASE'
+
+
+    compile 'org.springframework:spring-jdbc:4.3.3.RELEASE'
+    compile 'org.springframework:spring-orm:4.3.3.RELEASE'
+
+    compile 'org.springframework.data:spring-data-jpa:1.10.4.RELEASE'
+
+
 
 //    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
 //    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'

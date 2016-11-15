@@ -1,4 +1,4 @@
-package net.therap.mealplannerhibernate.controller;
+package net.therap.mealplannerhibernate.web.controller;
 
 import com.google.gson.Gson;
 import net.therap.mealplannerhibernate.entity.Dish;
@@ -19,9 +19,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author rayed
- * @since 11/9/16 3:21 PM
- */
+* @author rayed
+* @since 11/9/16 3:21 PM
+*/
 
 @Controller
 @RequestMapping("/meal")
@@ -61,7 +61,7 @@ public class MealController {
 
     @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
     public String addMealForm(ModelMap map){
-         DishPlanner dishPlanner = new DishPlanner();
+        DishPlanner dishPlanner = new DishPlanner();
         List<Dish> dish = dishPlanner.getDish();
         Meal meal = new Meal();
         meal.setDishList(dish);

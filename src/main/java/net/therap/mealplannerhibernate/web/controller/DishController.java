@@ -1,6 +1,5 @@
-package net.therap.mealplannerhibernate.controller;
+package net.therap.mealplannerhibernate.web.controller;
 
-import net.therap.mealplannerhibernate.service.DishPlanner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author rayed
- * @since 11/8/16 11:42 AM
- */
+* @author rayed
+* @since 11/8/16 11:42 AM
+*/
 
 @Controller
 @RequestMapping(value = {"/dish"})
@@ -22,13 +21,19 @@ public class DishController {
 //    @Autowired
 //    DishRepository repository;
 
+//    @Autowired
+//    DishDaoImpl dishDao;
+
     @ResponseBody
     @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
     public String viewDish() {
 //        List<Dish> dishList = (List<Dish>) repository.findAll();
 //        //TODO jackson
+
+//        List<Dish> dishList = dishDao.viewDish();
 //        String json = new Gson().toJson(dishList);
 //        return json;
+
         return "adminHomePage";
     }
 
@@ -64,8 +69,8 @@ public class DishController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestParam("dishName") String dishName) {
-        DishPlanner dishPlanner = new DishPlanner();
-        dishPlanner.addDish(dishName);
+//        DishPlanner dishPlanner = new DishPlanner();
+//        dishPlanner.addDish(dishName);
         return "adminHomePage";
     }
 
