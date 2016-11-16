@@ -1,4 +1,4 @@
-package net.therap.mealplannerhibernate.app;
+package net.therap.mealplannerspring.app;
 
 
 import org.springframework.context.annotation.ComponentScan;
@@ -13,9 +13,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 
 @Configuration
-@ComponentScan(basePackages = "net.thera.mealplannerhibernate",
+@ComponentScan(basePackages = "net.thera.mealplannerspring",
     excludeFilters = {
         @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)
     })
-public class RootConfig {
-}
+public class RootConfig { }

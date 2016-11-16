@@ -1,7 +1,7 @@
-package net.therap.mealplannerhibernate.web.validator;
+package net.therap.mealplannerspring.web.validator;
 
 
-import net.therap.mealplannerhibernate.entity.User;
+import net.therap.mealplannerspring.domain.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -14,6 +14,7 @@ import org.springframework.validation.Validator;
 
 @Component
 public class LoginFormValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> clazz) {
         System.out.println(clazz.getSimpleName());
@@ -24,10 +25,5 @@ public class LoginFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
-//        User user = (User) target;
-//
-//        if (user.getEmail().length() < 20){
-//            errors.rejectValue("email", "email.required");
-//        }
     }
 }

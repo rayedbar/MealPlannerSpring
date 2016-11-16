@@ -1,4 +1,4 @@
-package net.therap.mealplannerhibernate.app;
+package net.therap.mealplannerspring.app;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

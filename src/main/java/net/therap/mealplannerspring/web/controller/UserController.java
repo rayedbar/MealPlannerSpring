@@ -1,8 +1,8 @@
 //package net.therap.mealplannerhibernate.web.controller;
 //
 //import com.google.gson.Gson;
-//import net.therap.mealplannerhibernate.entity.User;
-//import net.therap.mealplannerhibernate.service.UserManager;
+//import net.therap.mealplannerspring.domain.User;
+//import net.therap.mealplannerspring.service.UserManager;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;

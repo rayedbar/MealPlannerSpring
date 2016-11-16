@@ -1,4 +1,4 @@
-package net.therap.mealplannerhibernate.entity;
+package net.therap.mealplannerspring.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 

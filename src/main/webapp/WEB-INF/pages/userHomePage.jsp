@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="net.therap.mealplannerhibernate.entity.Dish" %>
+<%@ page import="net.therap.mealplannerspring.domain.Dish" %>
 <%--
   Created by IntelliJ IDEA.
   User: rayed

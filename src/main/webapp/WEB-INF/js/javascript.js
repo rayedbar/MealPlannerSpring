@@ -4,7 +4,14 @@
 
 // Dish js begins
 
-function viewDishList(userEmail) {
+$('#viewDishList').click(function () {
+    //$("#addForm").show();
+    viewDishList();
+});
+
+function viewDishList() {
+
+//    alert("viewDishList");
 
     $('#sectionHeader').text('Dish List');
 
@@ -22,9 +29,10 @@ function viewDishList(userEmail) {
 
     $tableDiv.append($table);
 
-   $.get("/usr/get", function (user_email) {
-        var userEmail = user_email;
+//   $.get("/usr/get", function (user_email) {
+        var userEmail = "admin@gmail.com";
         $.get("/dish/view", function (responseJson) {
+//            alert(responseJson);
             $.each(responseJson, function (index, dish) {
                 var dishId = dish.id;
                 var row = $("<tr>").appendTo($table);
@@ -36,7 +44,7 @@ function viewDishList(userEmail) {
                 }
             });
         });
-   });
+//   });
 }
 
 function editDish(dishId, dishName) {
@@ -49,8 +57,15 @@ function editDish(dishId, dishName) {
     $("#sectionHeader").text("Enter new dish name for " + dishName);
 }
 
+$("#tableDiv").on("click", '#deleteDishLabel', function () {
+    var dishId = $(this).data("dish-id");
+    deleteDish(dishId);
+})
+
 function deleteDish(dishId) {
-    $.get("/dish/delete", {dishId: dishId});
+    $.get("/dish/delete", {dishId: dishId}, function(){
+        viewDishList();
+    });
 }
 
 
@@ -60,18 +75,13 @@ $("#tableDiv").on("click", '#editDishLabel', function () {
     editDish(dishId, dishName);
 });
 
-$('#viewDishList').click(function () {
-    //$("#addForm").show();
-    viewDishList();
-});
 
-$("#tableDiv").on("click", '#deleteDishLabel', function () {
-    var dishId = $(this).data("dish-id");
-    deleteDish(dishId);
-});
+
+;
 
 
 function addDish() {
+    alert("ADD DISSH");
     $("#tableDiv").empty();
     $("#tableDiv").load("/dish/addDishForm");
 }

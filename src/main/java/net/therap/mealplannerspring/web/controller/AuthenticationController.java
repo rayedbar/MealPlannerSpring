@@ -1,17 +1,16 @@
-package net.therap.mealplannerhibernate.web.controller;
+package net.therap.mealplannerspring.web.controller;
 
-import net.therap.mealplannerhibernate.entity.User;
-import net.therap.mealplannerhibernate.web.validator.LoginFormValidator;
+import net.therap.mealplannerspring.domain.User;
+import net.therap.mealplannerspring.web.validator.LoginFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author rayed
@@ -20,20 +19,15 @@ import javax.persistence.PersistenceContext;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes
 public class AuthenticationController {
 
-
-    @Autowired
+   @Autowired
     private LoginFormValidator loginFormValidator;
 
     @InitBinder
     private void loginValidator(WebDataBinder binder){
         binder.addValidators(loginFormValidator);
     }
-
-    @PersistenceContext
-    EntityManager entityManager;
 
     @RequestMapping("/")
     public String entry(){
@@ -43,8 +37,6 @@ public class AuthenticationController {
     @RequestMapping(value = "/auth/login", method = RequestMethod.GET)
     public String login(Model model){
         User user = new User();
-//        user.setEmail("RAYED@GMAIL.COM");
-//        user.setPassword("rayedbinwahed");
         model.addAttribute(user);
         return "login";
     }
@@ -54,7 +46,6 @@ public class AuthenticationController {
         return "signup";
     }
 
-//    @InitBinder()
     @RequestMapping(value = "/auth/verify", method = RequestMethod.POST)
     public String verify(@Validated User user, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
