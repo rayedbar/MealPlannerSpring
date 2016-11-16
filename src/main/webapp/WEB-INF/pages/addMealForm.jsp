@@ -23,7 +23,7 @@
         <label>Select Dish</label>
         <c:forEach items="${meal.dishList}" var="dish" varStatus="loop">
             <div class="checkbox">
-                <label><input type="checkbox" value="${dish.name}" name="${dish.id}">${dish.name}</label>
+                <label><input type="checkbox" value="${dish.id}" name="dishList">${dish.name}</label>
             </div>
         </c:forEach>
     </div>

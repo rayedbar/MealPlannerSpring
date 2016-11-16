@@ -8,7 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 11/16/16 1:28 PM
  */
 
-public interface DishRepository extends JpaRepository<Dish, Integer> {
-//    public Dish findById(long id);
-
-}
+public interface DishRepository extends JpaRepository<Dish, Integer> { }

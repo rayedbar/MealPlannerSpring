@@ -1,16 +1,19 @@
 package net.therap.mealplannerspring.web.controller;
 
+import com.google.gson.Gson;
+import net.therap.mealplannerspring.domain.Dish;
 import net.therap.mealplannerspring.domain.Meal;
+import net.therap.mealplannerspring.service.DishService;
+import net.therap.mealplannerspring.service.MealService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
+import java.util.List;
 
 /**
 * @author rayed
@@ -21,24 +24,24 @@ import javax.validation.Valid;
 @RequestMapping("/meal")
 public class MealController {
 
+    @Autowired
+    private MealService mealService;
+
+    @Autowired
+    private DishService dishService;
+
     @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public String view(){
-        return null;
+        List<Meal> mealList = mealService.getMealList();
+        String json = new Gson().toJson(mealList);
+        return json;
     }
 
     @RequestMapping("/delete")
     public String delete(@RequestParam("mealId") int mealId) {
+        mealService.deleteMeal(mealId);
         return "adminHomePage";
-    }
-
-    @RequestMapping("/editMealForm")
-    @ResponseBody
-    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView){
-        System.out.println(mealId);
-        modelAndView.setViewName("editMealForm");
-        modelAndView.addObject("mealId", mealId);
-        return modelAndView;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -46,13 +49,28 @@ public class MealController {
         return "adminHomePage";
     }
 
-    @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
-    public String addMealForm(ModelMap map){
-        return "addMealForm";
+    @RequestMapping("/add")
+    public String add(@RequestParam("dishList") List<Dish> dishList){
+        System.out.println(dishList);
+        Meal meal1 = new Meal();
+        return "adminHomePage";
     }
 
-    @RequestMapping("/add")
-    public String add(@Valid Meal meal, BindingResult result, @RequestParam("dishList") String dishList){
-        return "adminHomePage";
+    @RequestMapping("/editMealForm")
+    @ResponseBody
+    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView){
+        modelAndView.setViewName("editMealForm");
+        modelAndView.addObject("mealId", mealId);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
+    public ModelAndView addMealForm(ModelAndView map){
+        Meal meal = new Meal();
+        List<Dish> dishList = dishService.getDishList();
+        meal.setDishList(dishList);
+        map.setViewName("addMealForm");
+        map.addObject("meal", meal);
+        return map;
     }
 }

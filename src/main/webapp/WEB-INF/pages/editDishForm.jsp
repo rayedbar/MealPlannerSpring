@@ -11,7 +11,7 @@
 <form class="form-inline" action="/dish/edit" method="POST">
     <div class="form-group">
         <%--<label class="sr-only" for="exampleInputEmail3">Email address</label>--%>
-        <input class="form-control" id="newDishName" name="newDishName" placeholder="Enter New Dish">
+        <input class="form-control" id="newDishName" name="dishName" placeholder="Enter New Dish">
         <input  type="hidden" name="dishId" value="${dishId}">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>

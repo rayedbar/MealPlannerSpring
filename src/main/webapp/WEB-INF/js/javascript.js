@@ -81,7 +81,7 @@ $("#tableDiv").on("click", '#editDishLabel', function () {
 
 
 function addDish() {
-    alert("ADD DISSH");
+//    alert("ADD DISSH");
     $("#tableDiv").empty();
     $("#tableDiv").load("/dish/addDishForm");
 }

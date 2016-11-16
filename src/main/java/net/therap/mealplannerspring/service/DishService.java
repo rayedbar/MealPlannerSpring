@@ -22,7 +22,18 @@ public class DishService {
         return repository.findAll();
     }
 
-    public void delete(int dishId) {
+    public void deleteDish(int dishId) {
         repository.delete(dishId);
+    }
+
+    public void editDish(int dishId, String dishName) {
+        Dish dish = repository.findOne(dishId);
+        dish.setName(dishName);
+        repository.save(dish);
+    }
+
+    public void addDish(String dishName) {
+        Dish dish = new Dish(dishName);
+        repository.save(dish);
     }
 }

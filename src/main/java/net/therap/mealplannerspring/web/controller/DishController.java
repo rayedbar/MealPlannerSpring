@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,17 +33,21 @@ public class DishController {
         return json;
     }
 
-
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteDish(@RequestParam("dishId") int dishId) {
-        dishService.delete(dishId);
+        dishService.deleteDish(dishId);
         return "redirect:/admin/homepage";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editDish(HttpServletRequest request) {
-        int dishId = Integer.parseInt(request.getParameter("dishId"));
-        String dishName = request.getParameter("newDishName");
+    public String editDish(@RequestParam("dishId") int dishId, @RequestParam("dishName") String dishName) {
+        dishService.editDish(dishId, dishName);
+        return "adminHomePage";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(@RequestParam("dishName") String dishName) {
+        dishService.addDish(dishName);
         return "adminHomePage";
     }
 
@@ -54,12 +57,6 @@ public class DishController {
         modelMap.setViewName("editDishForm");
         modelMap.addObject("dishId", dishId);
         return modelMap;
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@RequestParam("dishName") String dishName) {
-        Dish dish = new Dish(dishName);
-        return "adminHomePage";
     }
 
     @RequestMapping("/addDishForm")
