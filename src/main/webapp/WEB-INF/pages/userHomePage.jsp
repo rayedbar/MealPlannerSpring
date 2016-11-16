@@ -9,8 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@include file="/templates/header.jsp"%>
-<%@include file="/templates/navbar.jsp"%>
+<%@include file="/WEB-INF/pages/header.jsp"%>
+<%@include file="/WEB-INF/pages/navbar.jsp"%>
 
 <div class="container-fluid">
     <div class="row">
@@ -31,4 +31,4 @@
     </div>
 </div>
 
-<%@include file="/templates/footer.jsp"%>
+<%@include file="/WEB-INF/pages/footer.jsp"%>

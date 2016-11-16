@@ -17,11 +17,10 @@
 
     <title>Meal Planner</title>
 
-    <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss"/>
-    <spring:url value="/resources/css/bootstrap-theme.min.css" var="bootstrapThemeCss"/>
-    <spring:url value="/resources/css/signin.css" var="signIn"/>
-    <spring:url value="/resources/css/dashboard.css" var="dashboard"/>
-
+    <spring:url value="/css/bootstrap.min.css" var="bootstrapCss"/>
+    <spring:url value="/css/bootstrap-theme.min.css" var="bootstrapThemeCss"/>
+    <spring:url value="/css/signin.css" var="signIn"/>
+    <spring:url value="/css/dashboard.css" var="dashboard"/>
 
     <link href="${bootstrapCss}" rel="stylesheet"/>
     <link href="${bootstrapThemeCss}" rel="stylesheet"/>
