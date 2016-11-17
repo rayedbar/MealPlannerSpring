@@ -17,7 +17,6 @@ public class LoginFormValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-//        System.out.println(clazz.getSimpleName());
         return User.class.equals(clazz);
     }
 

@@ -7,10 +7,10 @@ import net.therap.mealplannerspring.service.DishService;
 import net.therap.mealplannerspring.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -50,13 +50,13 @@ public class MealController {
     }
 
     @RequestMapping("/add")
-    public String add(@RequestParam("day") String day, @RequestParam("type") String type, @RequestParam("dishList") List<Dish> dishList){
-//        System.out.println(dishList);
-//        Meal meal = new Meal();
-//        meal.setDishList(dishList);
+    public String add(@Validated Meal meal, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "login";
+        } else {
 
-        mealService.addMeal(day, type, dishList);
-        return "adminHomePage";
+            return "adminHomePage";
+        }
     }
 
     @RequestMapping("/editMealForm")
@@ -68,12 +68,11 @@ public class MealController {
     }
 
     @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
-    public ModelAndView addMealForm(ModelAndView map){
+    public String addMealForm(Model map){
         Meal meal = new Meal();
         List<Dish> dishList = dishService.getDishList();
-        meal.setDishList(dishList);
-        map.setViewName("addMealForm");
-        map.addObject("meal", meal);
-        return map;
+        map.addAttribute("meal", meal);
+        map.addAttribute("dishList", dishList);
+        return "addMealForm";
     }
 }
