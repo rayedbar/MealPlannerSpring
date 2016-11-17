@@ -50,9 +50,12 @@ public class MealController {
     }
 
     @RequestMapping("/add")
-    public String add(@RequestParam("dishList") List<Dish> dishList){
-        System.out.println(dishList);
-        Meal meal1 = new Meal();
+    public String add(@RequestParam("day") String day, @RequestParam("type") String type, @RequestParam("dishList") List<Dish> dishList){
+//        System.out.println(dishList);
+//        Meal meal = new Meal();
+//        meal.setDishList(dishList);
+
+        mealService.addMeal(day, type, dishList);
         return "adminHomePage";
     }
 

@@ -27,7 +27,7 @@ public class Meal implements Serializable{
     @Column(name = "meal_type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
     @JoinTable(
             name = "meal_has_dish",
             joinColumns = {@JoinColumn(name = "meal_id")},
@@ -39,7 +39,7 @@ public class Meal implements Serializable{
     }
 
     public Meal(String day, String type, List<Dish> dishList) {
-         this.day = day;
+        this.day = day;
         this.type = type;
         this.dishList = dishList;
     }

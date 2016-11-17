@@ -184,6 +184,11 @@ $("#addMeal").on("click", function(){
 
 // User js begins
 
+
+$('#viewUserList').click(function () {
+    viewUserList();
+});
+
 function viewUserList() {
     $('#sectionHeader').text('User List');
 
@@ -213,9 +218,6 @@ function viewUserList() {
 
 
 
-$('#viewUserList').click(function () {
-    viewUserList();
-});
 
 
 function deleteUser(userId){

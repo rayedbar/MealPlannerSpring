@@ -8,5 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 11/16/16 4:48 PM
  */
 
-public interface MealRepository extends JpaRepository<Meal, Integer> {
-}
+public interface MealRepository extends JpaRepository<Meal, Integer> { }
