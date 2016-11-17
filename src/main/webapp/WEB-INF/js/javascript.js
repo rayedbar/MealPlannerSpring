@@ -5,14 +5,10 @@
 // Dish js begins
 
 $('#viewDishList').click(function () {
-    //$("#addForm").show();
     viewDishList();
 });
 
 function viewDishList() {
-
-//    alert("viewDishList");
-
     $('#sectionHeader').text('Dish List');
 
     $(".active").removeClass("active");
@@ -68,20 +64,13 @@ function deleteDish(dishId) {
     });
 }
 
-
 $("#tableDiv").on("click", '#editDishLabel', function () {
     var dishId = $(this).data("dish-info").first;
     var dishName = $(this).data("dish-info").second;
     editDish(dishId, dishName);
 });
 
-
-
-;
-
-
 function addDish() {
-//    alert("ADD DISSH");
     $("#tableDiv").empty();
     $("#tableDiv").load("/dish/addDishForm");
 }
@@ -91,8 +80,6 @@ $("#addDish").click(function(){
 });
 
 // Dish js ends
-
-
 
 // Meal js begins
 
@@ -114,7 +101,6 @@ function viewMealList() {
     $tableDiv.append($table);
 
     $.get("/meal/view", function (responseJson) {
-//        alert(responseJson);
         $.each(responseJson, function (i, meal) {
             var row = $("<tr>").appendTo($table);
             row.append($("<td>").text(i + 1))
@@ -145,15 +131,11 @@ function addMeal() {
     $("#tableDiv").load("/meal/addMealForm");
 }
 
-
-
 function editMeal(mealId){
     $("#tableDiv").empty();
-
     $.get("/meal/editMealForm", {mealId: mealId}, function(response) {
         $("#tableDiv").append(response);
     });
-
     $("#sectionHeader").text("Enter new day, type and comma separated dish");
 }
 
@@ -171,10 +153,6 @@ $("#tableDiv").on("click", '#deleteMealLabel', function () {
     var mealId = $(this).data("meal-id");
     deleteMeal(mealId);
 })
-
-//$("#addDish").on("click", function(){
-//    addDish();
-//});
 
 $("#addMeal").on("click", function(){
     addMeal();
@@ -215,10 +193,6 @@ function viewUserList() {
         });
     });
 }
-
-
-
-
 
 function deleteUser(userId){
     $.get("/usr/delete", {userId: userId}, function(){
