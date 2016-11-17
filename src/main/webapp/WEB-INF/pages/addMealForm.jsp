@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <form:form action="/meal/add" method="post" modelAttribute="meal">
+    <form:errors path="*" element="div" cssStyle="color: red"/>
     <div class="form-group">
         <label for="enterDay">Enter Day</label>
         <form:input type="text" class="form-control" id="enterday" placeholder="Sunday, Monday, .." path="day"/>

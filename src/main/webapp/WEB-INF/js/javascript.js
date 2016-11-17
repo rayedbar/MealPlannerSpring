@@ -128,7 +128,15 @@ function deleteMeal(mealId){
 
 function addMeal() {
     $("#tableDiv").empty();
-    $("#tableDiv").load("/meal/addMealForm");
+    $("#tableDiv").load("/meal/addMealForm", function(response){
+//        document.forms[0].action = "/admin/HomePage";
+//        document.forms[0].method = "get";
+//        document.forms[0].submit();
+    });
+}
+
+function handleError(response){
+
 }
 
 function editMeal(mealId){

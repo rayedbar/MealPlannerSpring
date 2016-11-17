@@ -50,21 +50,19 @@ public class MealController {
     }
 
     @RequestMapping("/add")
-    public String add(@Validated Meal meal, BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return "login";
-        } else {
-
-            return "adminHomePage";
-        }
-    }
-
-    @RequestMapping("/editMealForm")
-    @ResponseBody
-    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView){
-        modelAndView.setViewName("editMealForm");
-        modelAndView.addObject("mealId", mealId);
-        return modelAndView;
+    public String add(@Validated @ModelAttribute("meal") Meal meal, BindingResult bindingResult){
+        mealService.addMeal(meal.getDay(), meal.getType(), meal.getDishList());
+//        List<String> jsonResponse = new ArrayList<>();
+//        String json = "No Errors";
+//        if (bindingResult.hasErrors()) {
+//            jsonResponse.add(bindingResult.getErrorCount() + "");
+//            json = new Gson().toJson(jsonResponse);
+//            return json;
+////            return "redirect:/meal/addMealForm";
+//        } else {
+//            return json;
+//        }
+        return "adminHomePage";
     }
 
     @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
@@ -74,5 +72,13 @@ public class MealController {
         map.addAttribute("meal", meal);
         map.addAttribute("dishList", dishList);
         return "addMealForm";
+    }
+
+    @RequestMapping("/editMealForm")
+    @ResponseBody
+    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView){
+        modelAndView.setViewName("editMealForm");
+        modelAndView.addObject("mealId", mealId);
+        return modelAndView;
     }
 }
