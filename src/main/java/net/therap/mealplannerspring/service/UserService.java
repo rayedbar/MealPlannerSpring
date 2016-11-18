@@ -1,6 +1,6 @@
 package net.therap.mealplannerspring.service;
 
-import net.therap.mealplannerspring.dao.UserDaoImpl;
+import net.therap.mealplannerspring.dao.UserRepository;
 import net.therap.mealplannerspring.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserDaoImpl userDaoImpl;
+    private UserRepository userRepository;
 
     public List<User> getUserList() {
-        return userDaoImpl.getUserList();
+        return userRepository.findAll();
     }
 }

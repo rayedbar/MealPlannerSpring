@@ -16,24 +16,24 @@ import java.util.List;
 public class DishService {
 
     @Autowired
-    DishRepository repository;
+    DishRepository dishRepository;
 
-    public List<Dish> getDishList(){
-        return repository.findAll();
+    public List<Dish> getDishList() {
+        return dishRepository.findAll();
     }
 
     public void deleteDish(int dishId) {
-        repository.delete(dishId);
+        dishRepository.delete(dishId);
     }
 
     public void editDish(int dishId, String dishName) {
-        Dish dish = repository.findOne(dishId);
+        Dish dish = dishRepository.findOne(dishId);
         dish.setName(dishName);
-        repository.save(dish);
+        dishRepository.save(dish);
     }
 
     public void addDish(String dishName) {
         Dish dish = new Dish(dishName);
-        repository.save(dish);
+        dishRepository.save(dish);
     }
 }

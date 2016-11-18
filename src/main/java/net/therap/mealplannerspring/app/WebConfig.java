@@ -34,8 +34,8 @@ import javax.sql.DataSource;
 @EnableSpringDataWebSupport
 @EnableTransactionManagement
 @ComponentScan("net.therap.mealplannerspring")
-@EnableJpaRepositories(basePackages = "net.therap.mealplannerspring")
-public class WebConfig extends WebMvcConfigurerAdapter{
+@EnableJpaRepositories(basePackages = "net.therap.mealplannerspring.dao")
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ViewResolver viewResolver() {
@@ -57,7 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 
     @Bean
-    public JpaVendorAdapter jpaVendorAdapter(){
+    public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabase(Database.valueOf("MYSQL"));
         adapter.setShowSql(true);
@@ -68,7 +68,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource,
-                                                                           JpaVendorAdapter jpaVendorAdapter){
+                                                                           JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
@@ -94,7 +94,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 
     @Bean
-    public PersistenceAnnotationBeanPostProcessor paPostProcessor(){
+    public PersistenceAnnotationBeanPostProcessor paPostProcessor() {
         return new PersistenceAnnotationBeanPostProcessor();
     }
 
@@ -107,7 +107,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 
     @Bean
-    public BeanPostProcessor persistenceTranslation(){
+    public BeanPostProcessor persistenceTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 

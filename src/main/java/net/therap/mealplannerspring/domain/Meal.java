@@ -13,11 +13,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "meal")
-public class Meal implements Serializable{
+public class Meal implements Serializable {
 
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "meal_id")
     private int id;
 
@@ -27,7 +27,7 @@ public class Meal implements Serializable{
     @Column(name = "meal_type")
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(
             name = "meal_has_dish",
             joinColumns = {@JoinColumn(name = "meal_id")},
@@ -51,11 +51,13 @@ public class Meal implements Serializable{
         this.dishList = dishList;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getId() { return id;}
 
     public List<Dish> getDishList() {
         return dishList;

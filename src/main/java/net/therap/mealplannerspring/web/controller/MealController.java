@@ -1,6 +1,5 @@
 package net.therap.mealplannerspring.web.controller;
 
-import com.google.gson.Gson;
 import net.therap.mealplannerspring.domain.Dish;
 import net.therap.mealplannerspring.domain.Meal;
 import net.therap.mealplannerspring.service.DishService;
@@ -16,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
-* @author rayed
-* @since 11/9/16 3:21 PM
-*/
+ * @author rayed
+ * @since 11/9/16 3:21 PM
+ */
 
 @Controller
 @RequestMapping("/meal")
@@ -30,12 +29,11 @@ public class MealController {
     @Autowired
     private DishService dishService;
 
-    @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public String view(){
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view(Model model) {
         List<Meal> mealList = mealService.getMealList();
-        String json = new Gson().toJson(mealList);
-        return json;
+        model.addAttribute("mealList", mealList);
+        return "viewMealPage";
     }
 
     @RequestMapping("/delete")
@@ -45,12 +43,12 @@ public class MealController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("mealId") int mealId, @RequestParam("mealDay") String day, @RequestParam("mealType") String type){
+    public String edit(@RequestParam("mealId") int mealId, @RequestParam("mealDay") String day, @RequestParam("mealType") String type) {
         return "adminHomePage";
     }
 
     @RequestMapping("/add")
-    public String add(@Validated @ModelAttribute("meal") Meal meal, BindingResult bindingResult){
+    public String add(@Validated @ModelAttribute("meal") Meal meal, BindingResult bindingResult) {
         mealService.addMeal(meal.getDay(), meal.getType(), meal.getDishList());
 //        List<String> jsonResponse = new ArrayList<>();
 //        String json = "No Errors";
@@ -66,7 +64,7 @@ public class MealController {
     }
 
     @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
-    public String addMealForm(Model map){
+    public String addMealForm(Model map) {
         Meal meal = new Meal();
         List<Dish> dishList = dishService.getDishList();
         map.addAttribute("meal", meal);
@@ -76,7 +74,7 @@ public class MealController {
 
     @RequestMapping("/editMealForm")
     @ResponseBody
-    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView){
+    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView) {
         modelAndView.setViewName("editMealForm");
         modelAndView.addObject("mealId", mealId);
         return modelAndView;

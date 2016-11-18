@@ -17,18 +17,18 @@ import java.util.List;
 public class MealService {
 
     @Autowired
-    private MealRepository repository;
+    private MealRepository mealRepository;
 
     public List<Meal> getMealList() {
-        return repository.findAll();
+        return mealRepository.findAll();
     }
 
     public void deleteMeal(int mealId) {
-        repository.delete(mealId);
+        mealRepository.delete(mealId);
     }
 
     public void addMeal(String day, String type, List<Dish> dishList) {
         Meal meal = new Meal(day, type, dishList);
-        repository.save(meal);
+        mealRepository.save(meal);
     }
 }

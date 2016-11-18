@@ -1,10 +1,10 @@
 package net.therap.mealplannerspring.web.controller;
 
-import com.google.gson.Gson;
 import net.therap.mealplannerspring.domain.User;
 import net.therap.mealplannerspring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,25 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
-* @author rayed
-* @since 11/7/16 4:38 PM
-*/
+ * @author rayed
+ * @since 11/7/16 4:38 PM
+ */
 
 @Controller
-@RequestMapping("/usr")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @ResponseBody
-    @RequestMapping(value = "/view", produces = "application/json", method = RequestMethod.GET)
-    public String view(){
-        System.out.println("here at user views");
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view(Model model) {
         List<User> userList = userService.getUserList();
-        System.out.println(userList);
-        String json = new Gson().toJson(userList);
-        return json;
+        model.addAttribute("userList", userList);
+        return "viewUserPage";
     }
 
     @ResponseBody

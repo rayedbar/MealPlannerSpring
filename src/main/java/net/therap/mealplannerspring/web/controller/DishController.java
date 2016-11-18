@@ -1,10 +1,10 @@
 package net.therap.mealplannerspring.web.controller;
 
-import com.google.gson.Gson;
 import net.therap.mealplannerspring.domain.Dish;
 import net.therap.mealplannerspring.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,12 +25,23 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-    @ResponseBody
-    @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json")
-    public String viewDish() {
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String viewDish(Model model) {
         List<Dish> dishList = dishService.getDishList();
-        String json = new Gson().toJson(dishList);
-        return json;
+        model.addAttribute("dishList", dishList);
+        return "viewDishPage";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addDish(Dish dish) {
+        dishService.addDish(dish.getName());
+        return "redirect:/dish/view";
+    }
+
+    @RequestMapping(value = "/addDishPage", method = RequestMethod.GET)
+    public String addDishPage(Model model) {
+        model.addAttribute("dish", new Dish());
+        return "addDishPage";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -45,12 +56,6 @@ public class DishController {
         return "adminHomePage";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@RequestParam("dishName") String dishName) {
-        dishService.addDish(dishName);
-        return "adminHomePage";
-    }
-
     @RequestMapping(value = "/editDishForm", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getEditDishForm(@RequestParam("dishId") int dishId, ModelAndView modelMap) {
@@ -59,8 +64,4 @@ public class DishController {
         return modelMap;
     }
 
-    @RequestMapping("/addDishForm")
-    public String addDishForm() {
-        return "addDishForm";
-    }
 }

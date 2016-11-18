@@ -1,19 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rayed
-  Date: 10/27/16
-  Time: 11:22 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-    <spring:url value="/js/bootstrap.min.js" var="bootstrapJs"/>
-    <spring:url value="/js/javascript.js" var="customJs"/>
-    <spring:url value="/js/jquery-3.1.1.js" var="jquery"/>
+<spring:url value="/js/bootstrap.min.js" var="bootstrapJs"/>
+<spring:url value="/js/javascript.js" var="customJs"/>
+<spring:url value="/js/jquery-3.1.1.js" var="jquery"/>
 
-    <script src="${jquery}" rel="script"></script>
-    <script src="${bootstrapJs}" rel="script"></script>
-    <script src="${customJs}" rel="script"></script>
+<script src="${jquery}" rel="script"></script>
+<script src="${bootstrapJs}" rel="script"></script>
+<script src="${customJs}" rel="script"></script>
 </body>
 </html>
