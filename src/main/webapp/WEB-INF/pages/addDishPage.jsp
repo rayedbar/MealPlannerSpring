@@ -12,6 +12,7 @@
 
             <h3 class="sub-header">Enter name of dish to add to database:</h3>
             <form:form method="post" action="/dish/add" modelAttribute="dish">
+                <form:errors path="*" element="div" cssClass="alert alert-danger fade in"/>
                 <div class="form-group">
                     <label for="dishName">Dish Name</label>
                     <form:input type="text" path="name" class="form-control" id="dishName" placeholder="Name of dish"/>

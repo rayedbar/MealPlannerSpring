@@ -1,7 +1,6 @@
 package net.therap.mealplannerspring.service;
 
 import net.therap.mealplannerspring.dao.MealRepository;
-import net.therap.mealplannerspring.domain.Dish;
 import net.therap.mealplannerspring.domain.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,7 @@ public class MealService {
         mealRepository.delete(mealId);
     }
 
-    public void addMeal(String day, String type, List<Dish> dishList) {
-        Meal meal = new Meal(day, type, dishList);
+    public void addMeal(Meal meal) {
         mealRepository.save(meal);
     }
 }

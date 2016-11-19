@@ -1,16 +1,20 @@
 package net.therap.mealplannerspring.web.controller;
 
-import net.therap.mealplannerspring.domain.Dish;
 import net.therap.mealplannerspring.domain.Meal;
 import net.therap.mealplannerspring.service.DishService;
 import net.therap.mealplannerspring.service.MealService;
+import net.therap.mealplannerspring.web.validator.MealValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -29,6 +33,14 @@ public class MealController {
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private MealValidator mealValidator;
+
+    @InitBinder
+    private void setMealValidator(WebDataBinder binder) {
+        binder.addValidators(mealValidator);
+    }
+
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String view(Model model) {
         List<Meal> mealList = mealService.getMealList();
@@ -36,47 +48,34 @@ public class MealController {
         return "viewMealPage";
     }
 
-    @RequestMapping("/delete")
-    public String delete(@RequestParam("mealId") int mealId) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addMeal(@Validated Meal meal, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errors", meal);
+            return "redirect:/meal/addMealPage";
+        }
+        mealService.addMeal(meal);
+        return "redirect:/meal/view";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteMeal(@RequestParam("id") int mealId) {
         mealService.deleteMeal(mealId);
-        return "adminHomePage";
+        return "redirect:/meal/view";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("mealId") int mealId, @RequestParam("mealDay") String day, @RequestParam("mealType") String type) {
-        return "adminHomePage";
-    }
-
-    @RequestMapping("/add")
-    public String add(@Validated @ModelAttribute("meal") Meal meal, BindingResult bindingResult) {
-        mealService.addMeal(meal.getDay(), meal.getType(), meal.getDishList());
-//        List<String> jsonResponse = new ArrayList<>();
-//        String json = "No Errors";
-//        if (bindingResult.hasErrors()) {
-//            jsonResponse.add(bindingResult.getErrorCount() + "");
-//            json = new Gson().toJson(jsonResponse);
-//            return json;
-////            return "redirect:/meal/addMealForm";
-//        } else {
-//            return json;
+    @RequestMapping(value = "/addMealPage", method = RequestMethod.GET)
+    public String addMealPage(Model model) {
+//        if (errors.hasErrors()){
+//            model.addAttribute("errors", errors);
 //        }
-        return "adminHomePage";
-    }
 
-    @RequestMapping(value = "/addMealForm", method = RequestMethod.GET)
-    public String addMealForm(Model map) {
+        BindingResult errors = (BindingResult) model.asMap().get("errors");
+
+
         Meal meal = new Meal();
-        List<Dish> dishList = dishService.getDishList();
-        map.addAttribute("meal", meal);
-        map.addAttribute("dishList", dishList);
-        return "addMealForm";
-    }
-
-    @RequestMapping("/editMealForm")
-    @ResponseBody
-    public ModelAndView editMealForm(@RequestParam("mealId") int mealId, ModelAndView modelAndView) {
-        modelAndView.setViewName("editMealForm");
-        modelAndView.addObject("mealId", mealId);
-        return modelAndView;
+        meal.setDishList(dishService.getDishList());
+        model.addAttribute("meal", meal);
+        return "addMealPage";
     }
 }

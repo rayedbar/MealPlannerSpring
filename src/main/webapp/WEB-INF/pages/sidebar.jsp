@@ -8,13 +8,8 @@
     </ul>
     <ul class="nav nav-sidebar">
         <li><a href="/dish/addDishPage">Add Dish</a></li>
-        <li><a href="#">Add Meal</a></li>
+        <li><a href="/meal/addMealPage">Add Meal</a></li>
         <li><a href="#">Add User</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="#">Delete Dish</a></li>
-        <li><a href="#">Delete Meal</a></li>
-        <li><a href="#">Delete User</a></li>
     </ul>
     <ul class="nav nav-sidebar">
         <li><a href="#">Update Dish</a></li>

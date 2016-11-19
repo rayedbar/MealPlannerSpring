@@ -21,47 +21,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class AuthenticationController {
 
-   @Autowired
+    @Autowired
     private LoginFormValidator loginFormValidator;
 
     @InitBinder
-    private void loginValidator(WebDataBinder binder){
+    private void loginValidator(WebDataBinder binder) {
         binder.addValidators(loginFormValidator);
     }
 
     @RequestMapping("/")
-    public String entry(){
+    public String entry() {
         return "redirect:/auth/login";
     }
 
     @RequestMapping(value = "/auth/login", method = RequestMethod.GET)
-    public String login(Model model){
+    public String login(Model model) {
         User user = new User();
         model.addAttribute(user);
         return "login";
     }
 
     @RequestMapping(value = "/auth/signup", method = RequestMethod.GET)
-    public String signup(){
+    public String signup() {
         return "signup";
     }
 
     @RequestMapping(value = "/auth/verify", method = RequestMethod.POST)
-    public String verify(@Validated User user, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public String verify(@Validated User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "login";
         }
         return "adminHomePage";
     }
 
     @RequestMapping(value = "/admin/homepage")
-    public String adminpage(){
+    public String adminpage() {
         return "adminHomePage";
-    }
-
-    @RequestMapping(value = "/usr/homepage")
-    public String homepage(){
-        return "userHomePage";
     }
 
 }

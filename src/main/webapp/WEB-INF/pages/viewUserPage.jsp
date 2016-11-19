@@ -18,6 +18,7 @@
                         <th>#</th>
                         <th>email</th>
                         <th>Password</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,14 @@
                             </td>
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.password}"/></td>
+                            <c:choose>
+                                <c:when test="${user.email=='admin@gmail.com'}">
+                                    <td></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a href="/user/delete?id=<c:out  value="${user.id}"/>"/>Delete</td>
+                                </c:otherwise>
+                            </c:choose>
                         </tr>
                         <%i = i + 1;%>
                     </c:forEach>

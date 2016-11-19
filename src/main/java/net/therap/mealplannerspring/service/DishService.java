@@ -36,4 +36,8 @@ public class DishService {
         Dish dish = new Dish(dishName);
         dishRepository.save(dish);
     }
+
+    public void deleteDishList(List<Dish> dishList) {
+        dishRepository.deleteInBatch(dishList);
+    }
 }

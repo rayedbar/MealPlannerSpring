@@ -12,11 +12,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "user_id")
     private int id;
 
@@ -26,11 +26,11 @@ public class User implements Serializable{
     @Column(name = "user_password", nullable = false)
     private String password;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String email, String password){
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -58,5 +58,25 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (!email.equals(user.email)) return false;
+        if (!password.equals(user.password)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = email.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
     }
 }

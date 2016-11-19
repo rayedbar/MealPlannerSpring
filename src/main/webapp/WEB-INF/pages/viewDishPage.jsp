@@ -17,6 +17,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,7 @@
                             <td><%=i%>
                             </td>
                             <td><c:out value="${dish.name}"/></td>
+                            <td><a href="/dish/delete?id=<c:out value="${dish.id}"/>"/>Delete</td>
                         </tr>
                         <%i = i + 1;%>
                     </c:forEach>

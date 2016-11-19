@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ include file="header.jsp" %>
 <%@ include file="navbar.jsp" %>
@@ -19,6 +20,7 @@
                         <th>Day</th>
                         <th>Type</th>
                         <th>Dishes</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,6 +32,7 @@
                             <td><c:out value="${meal.day}"/></td>
                             <td><c:out value="${meal.type}"/></td>
                             <td><c:out value="${meal.dishList}"/></td>
+                            <td><a href="/meal/delete?id=<c:out value="${meal.id}"/>"/>Delete</td>
                         </tr>
                         <%i = i + 1;%>
                     </c:forEach>
