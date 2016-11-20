@@ -13,6 +13,7 @@ import org.springframework.validation.Validator;
 
 @Component
 public class MealValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> clazz) {
         return Meal.class.equals(clazz);

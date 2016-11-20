@@ -26,4 +26,9 @@ dependencies {
     compile 'org.springframework:spring-jdbc:4.3.3.RELEASE'
     compile 'org.springframework:spring-orm:4.3.3.RELEASE'
     compile 'org.springframework.data:spring-data-jpa:1.10.4.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.0.RELEASE'
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.0.RELEASE'
+
+
 }

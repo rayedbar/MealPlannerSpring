@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author rayed
  * @since 11/7/16 11:46 AM
@@ -51,14 +53,14 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/auth/verify", method = RequestMethod.POST)
-    public String verify(@Validated User user, BindingResult bindingResult) {
+    public String verify(@Validated User user, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {
             return "login";
         }
         User userByEmail = null;
-        userByEmail = userService.getUserByEmail(user.getEmail());
+        userByEmail = userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userByEmail != null){
-            if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")){
+            if (user.getEmail().equals("admin@gmail.com")){
                 return "redirect:/admin/homepage";
             }
             return "redirect:/user/homepage";
