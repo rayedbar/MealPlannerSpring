@@ -1,6 +1,7 @@
 package net.therap.mealplannerspring.web.controller;
 
 import net.therap.mealplannerspring.domain.User;
+import net.therap.mealplannerspring.service.UserService;
 import net.therap.mealplannerspring.web.validator.LoginFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class AuthenticationController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private LoginFormValidator loginFormValidator;
@@ -51,10 +55,15 @@ public class AuthenticationController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")){
-            return "redirect:/admin/homepage";
+        User userByEmail = null;
+        userByEmail = userService.getUserByEmail(user.getEmail());
+        if (userByEmail != null){
+            if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")){
+                return "redirect:/admin/homepage";
+            }
+            return "redirect:/user/homepage";
         }
-        return "redirect:/user/homepage";
+        return "login";
     }
 
     @RequestMapping(value = "/admin/homepage")
