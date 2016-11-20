@@ -9,11 +9,5 @@
     <ul class="nav nav-sidebar">
         <li><a href="/dish/addDishPage">Add Dish</a></li>
         <li><a href="/meal/addMealPage">Add Meal</a></li>
-        <li><a href="#">Add User</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="#">Update Dish</a></li>
-        <li><a href="#">Update Meal</a></li>
-        <li><a href="#">Update User</a></li>
     </ul>
 </div>

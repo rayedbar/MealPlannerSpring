@@ -51,7 +51,10 @@ public class AuthenticationController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        return "adminHomePage";
+        if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")){
+            return "redirect:/admin/homepage";
+        }
+        return "redirect:/user/homepage";
     }
 
     @RequestMapping(value = "/admin/homepage")
@@ -59,4 +62,8 @@ public class AuthenticationController {
         return "adminHomePage";
     }
 
+    @RequestMapping(value = "/user/homepage", method = RequestMethod.GET)
+    public String userpage(){
+        return "userHomePage";
+    }
 }

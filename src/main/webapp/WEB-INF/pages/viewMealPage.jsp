@@ -20,7 +20,8 @@
                         <th>Day</th>
                         <th>Type</th>
                         <th>Dishes</th>
-                        <th>Action</th>
+                        <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <td><c:out value="${meal.type}"/></td>
                             <td><c:out value="${meal.dishList}"/></td>
                             <td><a href="/meal/delete?id=<c:out value="${meal.id}"/>"/>Delete</td>
+                            <td><a href="/meal/updateMealPage?id=<c:out value="${meal.id}"/>"/>Update</td>
                         </tr>
                         <%i = i + 1;%>
                     </c:forEach>

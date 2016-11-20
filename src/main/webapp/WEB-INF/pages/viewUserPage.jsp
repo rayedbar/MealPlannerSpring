@@ -18,15 +18,13 @@
                         <th>#</th>
                         <th>email</th>
                         <th>Password</th>
-                        <th>Action</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <%int i = 1;%>
-                    <c:forEach items="${userList}" var="user">
+                    <c:forEach items="${userList}" var="user" varStatus="loop">
                         <tr>
-                            <td><%=i%>
-                            </td>
+                            <td><c:out value="${loop.index}"/></td>
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.password}"/></td>
                             <c:choose>
@@ -38,7 +36,6 @@
                                 </c:otherwise>
                             </c:choose>
                         </tr>
-                        <%i = i + 1;%>
                     </c:forEach>
                     </tbody>
                 </table>

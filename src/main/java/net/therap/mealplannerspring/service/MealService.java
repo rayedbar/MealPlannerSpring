@@ -29,4 +29,14 @@ public class MealService {
     public void addMeal(Meal meal) {
         mealRepository.save(meal);
     }
+
+    public Meal getMeal(int id) {
+        return mealRepository.findOne(id);
+    }
+
+    public void updateMeal(Meal meal) {
+        mealRepository.save(meal);
+//        mealRepository.saveAndFlush(meal);
+//        mealRepository.
+    }
 }

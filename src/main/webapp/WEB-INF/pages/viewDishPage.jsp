@@ -17,7 +17,8 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Action</th>
+                        <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                             </td>
                             <td><c:out value="${dish.name}"/></td>
                             <td><a href="/dish/delete?id=<c:out value="${dish.id}"/>"/>Delete</td>
+                            <td><a href="/dish/updateDishPage?id=<c:out value="${dish.id}"/>"/>Update</td>
                         </tr>
                         <%i = i + 1;%>
                     </c:forEach>

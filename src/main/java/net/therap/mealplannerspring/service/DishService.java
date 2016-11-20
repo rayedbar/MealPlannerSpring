@@ -26,7 +26,7 @@ public class DishService {
         dishRepository.delete(dishId);
     }
 
-    public void editDish(int dishId, String dishName) {
+    public void updateDish(int dishId, String dishName) {
         Dish dish = dishRepository.findOne(dishId);
         dish.setName(dishName);
         dishRepository.save(dish);

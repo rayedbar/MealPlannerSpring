@@ -58,9 +58,22 @@ public class DishController {
         return "redirect:/dish/view";
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateDish(@RequestParam("dishId") int dishId, @RequestParam("dishName") String dishName) {
+        dishService.updateDish(dishId, dishName);
+        return "redirect:/dish/view";
+    }
+
     @RequestMapping(value = "/addDishPage", method = RequestMethod.GET)
     public String addDishPage(Model model) {
         model.addAttribute("dish", new Dish());
         return "addDishPage";
+    }
+
+    @RequestMapping(value = "/updateDishPage", method = RequestMethod.GET)
+    public String updateDishPage(@RequestParam("id") int dishId, Model model){
+//        List<Dish> dishList = dishService.getDishList();
+        model.addAttribute("dishId", dishId);
+        return "updateDishPage";
     }
 }
