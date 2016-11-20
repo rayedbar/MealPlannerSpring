@@ -51,8 +51,7 @@ public class MealController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addMeal(@Validated Meal meal, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("errors", meal);
-            return "redirect:/meal/addMealPage";
+            return "addMealPage";
         }
         mealService.addMeal(meal);
         return "redirect:/meal/view";
@@ -66,13 +65,6 @@ public class MealController {
 
     @RequestMapping(value = "/addMealPage", method = RequestMethod.GET)
     public String addMealPage(Model model) {
-//        if (errors.hasErrors()){
-//            model.addAttribute("errors", errors);
-//        }
-
-        BindingResult errors = (BindingResult) model.asMap().get("errors");
-
-
         Meal meal = new Meal();
         meal.setDishList(dishService.getDishList());
         model.addAttribute("meal", meal);
