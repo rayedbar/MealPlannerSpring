@@ -76,6 +76,4 @@ public class Dish implements Serializable {
     public String toString() {
         return name;
     }
-
-
 }

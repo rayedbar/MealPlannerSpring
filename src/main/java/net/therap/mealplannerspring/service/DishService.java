@@ -1,6 +1,6 @@
 package net.therap.mealplannerspring.service;
 
-import net.therap.mealplannerspring.dao.DishRepository;
+import net.therap.mealplannerspring.dao.DishDao;
 import net.therap.mealplannerspring.domain.Dish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,28 +16,28 @@ import java.util.List;
 public class DishService {
 
     @Autowired
-    DishRepository dishRepository;
+    DishDao dishDao;
 
     public List<Dish> getDishList() {
-        return dishRepository.findAll();
+        return dishDao.findAll();
     }
 
     public void deleteDish(int dishId) {
-        dishRepository.delete(dishId);
+        dishDao.delete(dishId);
     }
 
     public void updateDish(int dishId, String dishName) {
-        Dish dish = dishRepository.findOne(dishId);
+        Dish dish = dishDao.findOne(dishId);
         dish.setName(dishName);
-        dishRepository.save(dish);
+        dishDao.save(dish);
     }
 
     public void addDish(String dishName) {
         Dish dish = new Dish(dishName);
-        dishRepository.save(dish);
+        dishDao.save(dish);
     }
 
     public void deleteDishList(List<Dish> dishList) {
-        dishRepository.deleteInBatch(dishList);
+        dishDao.deleteInBatch(dishList);
     }
 }

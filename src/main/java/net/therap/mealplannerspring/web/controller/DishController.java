@@ -72,7 +72,6 @@ public class DishController {
 
     @RequestMapping(value = "/updateDishPage", method = RequestMethod.GET)
     public String updateDishPage(@RequestParam("id") int dishId, Model model){
-//        List<Dish> dishList = dishService.getDishList();
         model.addAttribute("dishId", dishId);
         return "updateDishPage";
     }

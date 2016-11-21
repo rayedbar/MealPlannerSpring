@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class Meal implements Serializable {
     private List<Dish> dishList;
 
     public Meal() {
+        dishList = new ArrayList<>();
     }
 
     public Meal(String day, String type, List<Dish> dishList) {
@@ -83,27 +85,27 @@ public class Meal implements Serializable {
         this.type = type;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof Meal)) return false;
-//
-//        Meal meal = (Meal) o;
-//
-//        if (id != meal.id) return false;
-//        if (!day.equals(meal.day)) return false;
-//        if (dishList != null ? !dishList.equals(meal.dishList) : meal.dishList != null) return false;
-//        if (!type.equals(meal.type)) return false;
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = id;
-//        result = 31 * result + day.hashCode();
-//        result = 31 * result + type.hashCode();
-//        result = 31 * result + (dishList != null ? dishList.hashCode() : 0);
-//        return result;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Meal)) return false;
+
+        Meal meal = (Meal) o;
+
+        if (id != meal.id) return false;
+        if (!day.equals(meal.day)) return false;
+        if (dishList != null ? !dishList.equals(meal.dishList) : meal.dishList != null) return false;
+        if (!type.equals(meal.type)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + day.hashCode();
+        result = 31 * result + type.hashCode();
+        result = 31 * result + (dishList != null ? dishList.hashCode() : 0);
+        return result;
+    }
 }

@@ -1,6 +1,6 @@
 package net.therap.mealplannerspring.service;
 
-import net.therap.mealplannerspring.dao.UserRepository;
+import net.therap.mealplannerspring.dao.UserDao;
 import net.therap.mealplannerspring.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,17 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     public List<User> getUserList() {
-        return userRepository.findAll();
+        return userDao.findAll();
     }
 
     public void delete(int userId) {
-        userRepository.delete(userId);
+        userDao.delete(userId);
     }
 
     public User getUserByEmailAndPassword(String email, String password){
-        return userRepository.findByEmailAndPassword(email, password);
+        return userDao.findByEmailAndPassword(email, password);
     }
 }

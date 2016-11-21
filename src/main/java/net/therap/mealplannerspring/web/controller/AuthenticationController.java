@@ -60,6 +60,7 @@ public class AuthenticationController {
         User userByEmail = null;
         userByEmail = userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userByEmail != null){
+            session.setAttribute("email", user.getEmail());
             if (user.getEmail().equals("admin@gmail.com")){
                 return "redirect:/admin/homepage";
             }
