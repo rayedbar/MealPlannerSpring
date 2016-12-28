@@ -1,2 +1,2 @@
-Migrate meal planner to Spring MVC
+Meal planning application using Spring Framework
 
